@@ -1,5 +1,5 @@
 ## Amazon - Alexa Web Information Service (AWIS)
-Ruby Library for AWSI API - See: [Docs](http://docs.amazonwebservices.com/AlexaWebInfoService/latest/)
+Ruby Library for AWIS REST API - See: [Alexa Docs](http://docs.amazonwebservices.com/AlexaWebInfoService/latest/)
 
 ### How to installation
 
