@@ -1,4 +1,5 @@
 require "multi_xml"
+require 'nokogiri'
 
 require "awis/version"
 require "awis/hash"

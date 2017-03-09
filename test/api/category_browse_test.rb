@@ -20,6 +20,10 @@ describe Awis::API::CategoryBrowse do
       assert_equal "Success", @category_browse.status_code
     end
 
+    it "Should be return success" do
+      assert_equal true, @category_browse.success?
+    end
+
     it "Should be return categories" do
       assert_equal 8, @category_browse.categories.size
     end

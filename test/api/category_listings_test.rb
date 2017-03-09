@@ -12,12 +12,16 @@ describe Awis::API::CategoryListings do
       @category_listings = Awis::Client.new.category_listings(:path => "Top/Games/Card_Games")
     end
 
+    it "Should behas request id" do
+      assert_equal "680c43ef-de20-167b-8d12-31c13d6ca0af", @category_listings.request_id
+    end
+
     it "Should be has success status code" do
       assert_equal "Success", @category_listings.status_code
     end
 
-    it "Should behas request id" do
-      assert_equal "680c43ef-de20-167b-8d12-31c13d6ca0af", @category_listings.request_id
+    it "Should be return success" do
+      assert_equal true, @category_listings.success?
     end
 
     it "Should be returns recursive count" do

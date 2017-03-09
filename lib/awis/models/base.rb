@@ -21,6 +21,10 @@ module Awis
         all_items = {}.array_slice_merge!(:item, items, items_count)
         all_items.map { |item| _object << kclass.new(item) }
       end
+
+      def success?
+        status_code == 'Success'
+      end
     end
   end
 end

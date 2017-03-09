@@ -1,5 +1,5 @@
 ## Amazon - Alexa Web Information Service (AWIS)
-Ruby Library for AWSI API - [Amazon AWIS](http://docs.amazonwebservices.com/AlexaWebInfoService/latest/)
+Ruby Library for AWSI API - See: [Docs](http://docs.amazonwebservices.com/AlexaWebInfoService/latest/)
 
 ### How to installation
 
@@ -14,6 +14,7 @@ gem install awis-sdk-ruby
 ```
 AWIS_CONFIG = YAML.load(File.read('awis.yml'))
 
+require 'awis'
 Awis.config do |c|
   c.access_key_id = AWIS_CONFIG['access_key_id']
   c.secret_access_key = AWIS_CONFIG['secret_access_key']
@@ -25,7 +26,7 @@ end
 
 ``` ruby
 client = Awis::Client.new
-url_info = client.url_info(url: "github.com")
+url_info = client.url_info(url: "site.com")
 ```
 
 Returns object that contains attributes:
@@ -48,8 +49,6 @@ You can specify options:
 
 * url 
 * response_group - which data to include in response (i.e. ["rank", "contact_info", "content_data"]) - defaults to all available
-
-See: [Docs](http://docs.amazonwebservices.com/AlexaWebInfoService/latest/) for valid groups.
 
 ##### Get Sites Linking In
 
@@ -139,10 +138,6 @@ Awis is using `nokogiri` to parse XML documents.
 ### Contributors
 
 * [Encore Shao](https://github.com/encoreshao)
-
-### Continuous Integration
-
-[![Build Status](https://travis-ci.org/encoreshao/awis.svg?branch=master)](https://travis-ci.org/encoreshao/awis)
 
 ### Copyright
 

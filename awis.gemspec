@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Ruby - Amazon Alexa Web Information Service Library (AWIS)}
   spec.description   = %q{Ruby - Amazon Alexa Web Information Service Library (AWIS)}
-  spec.homepage      = "https://github.com/encoreshao/awis"
+  spec.homepage      = "https://github.com/encoreshao/amazon-awis"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "multi_xml", ">= 0.5.0"
   spec.add_dependency "faraday", "~> 0.9.0"
+  spec.add_dependency "nokogiri", '~> 1.6.8'
 
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "mocha"

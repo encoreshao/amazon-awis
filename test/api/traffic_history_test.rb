@@ -20,6 +20,10 @@ describe Awis::API::TrafficHistory do
       assert_equal "Success", @traffic_history.status_code
     end
 
+    it "Should be return success" do
+      assert_equal true, @traffic_history.success?
+    end
+
     it "Should be returns site" do
       assert_equal "github.com", @traffic_history.site
     end

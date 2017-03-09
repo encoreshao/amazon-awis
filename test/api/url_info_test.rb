@@ -23,6 +23,10 @@ describe Awis::API::UrlInfo do
       @url_info = Awis::Client.new.url_info(:url => "github.com", :response_group => ["rank", "links_in_count", "site_data"])
     end
 
+    it "has request id" do
+      assert_equal "2bc0f070-540f-8fbf-6804-cd6c9241a039", @url_info.request_id
+    end
+
     it "Should be returns rank" do
       assert_equal 493, @url_info.rank
     end
@@ -40,16 +44,24 @@ describe Awis::API::UrlInfo do
 
       assert_equal expected, @url_info.content_data.site_description
     end
-
-    it "has request id" do
-      assert_equal "2bc0f070-540f-8fbf-6804-cd6c9241a039", @url_info.request_id
-    end
   end
 
   describe "with github.com full response group" do
     before do
       stub_request(:get, %r{http://awis.amazonaws.com}).to_return(fixture("url_info/github_full.txt"))
       @url_info = Awis::Client.new.url_info(:url => "github.com")
+    end
+
+    it "Should be has request id" do
+      assert_equal "2df424ef-f1fe-5452-c372-ea598784dbd7", @url_info.request_id
+    end
+    
+    it "Should be has success status code" do
+      assert_equal "Success", @url_info.status_code
+    end
+
+    it "Should be return success" do
+      assert_equal true, @url_info.success?
     end
 
     it "Should be returns rank" do
@@ -92,14 +104,6 @@ describe Awis::API::UrlInfo do
     it "Should be returns usage statistics" do
       assert_equal 4, @url_info.usage_statistics.size
     end
-
-    it "Should be has request id" do
-      assert_equal "2df424ef-f1fe-5452-c372-ea598784dbd7", @url_info.request_id
-    end
-    
-    it "Should be has success status code" do
-      assert_equal "Success", @url_info.status_code
-    end
   end
 
   describe "with github.com rank response group" do
@@ -107,13 +111,13 @@ describe Awis::API::UrlInfo do
       stub_request(:get, %r{http://awis.amazonaws.com}).to_return(fixture("url_info/github_rank.txt"))
       @url_info = Awis::Client.new.url_info(:url => "github.com", :response_group => ["rank"])
     end
-
-    it "Should be returns rank" do
-      assert_equal 69, @url_info.rank
-    end
     
     it "Should be has request id" do
       assert_equal "2df424ef-f1fe-5452-c372-ea598784dbd7", @url_info.request_id
+    end
+
+    it "Should be returns rank" do
+      assert_equal 69, @url_info.rank
     end
   end
 end

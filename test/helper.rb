@@ -2,7 +2,6 @@ require "minitest/autorun"
 require "webmock/minitest"
 require "mocha/setup"
 require "awis"
-require 'nokogiri'
 
 class MiniTest::Test
   def setup

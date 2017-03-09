@@ -20,6 +20,10 @@ describe Awis::API::SitesLinkingIn do
       assert_equal "Success", @sites_linking_in.status_code
     end
 
+    it "Should be return success" do
+      assert_equal true, @sites_linking_in.success?
+    end
+
     it "returns sites" do
       assert_equal 20, @sites_linking_in.sites.size
     end
