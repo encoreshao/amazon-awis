@@ -1,0 +1,604 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: text/xml
+Transfer-Encoding: chunked
+Date: Thu, 09 Mar 2017 02:22:31 GMT
+
+<?xml version="1.0"?>
+<aws:UrlInfoResponse xmlns:aws="http://alexa.amazonaws.com/doc/2005-07-11/"><aws:Response xmlns:aws="http://awis.amazonaws.com/doc/2005-07-11"><aws:OperationRequest><aws:RequestId>2df424ef-f1fe-5452-c372-ea598784dbd7</aws:RequestId></aws:OperationRequest><aws:UrlInfoResult><aws:Alexa>
+  
+  <aws:ContentData>
+    <aws:DataUrl type="canonical">github.com</aws:DataUrl>
+    <aws:SiteData>
+      <aws:Title>GitHub</aws:Title>
+      <aws:Description>GitHub is the best place to share code with friends, co-workers, classmates, and complete strangers. Over four million people use GitHub to build amazing things together.</aws:Description>
+    </aws:SiteData>
+    <aws:Speed>
+      <aws:MedianLoadTime>1672</aws:MedianLoadTime>
+      <aws:Percentile>52</aws:Percentile>
+    </aws:Speed>
+    <aws:AdultContent/>
+    <aws:Language/>
+    <aws:LinksInCount>72886</aws:LinksInCount>
+    <aws:OwnedDomains/>
+  </aws:ContentData>
+  <aws:Related>
+    <aws:DataUrl type="canonical">github.com</aws:DataUrl>
+    <aws:RelatedLinks>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">zenofshen.com/posts/ajax-sortable-lists-tutorial</aws:DataUrl>
+        <aws:NavigableUrl>http://zenofshen.com/posts/ajax-sortable-lists-tutorial</aws:NavigableUrl>
+        <aws:Title>zen of shen - script.aculo.us Ajax Sortable Lists Tutorial</aws:Title>
+      </aws:RelatedLink>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">ycombinator.com/</aws:DataUrl>
+        <aws:NavigableUrl>http://ycombinator.com/</aws:NavigableUrl>
+        <aws:Title>Y Combinator</aws:Title>
+      </aws:RelatedLink>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">www.xilinus.com/</aws:DataUrl>
+        <aws:NavigableUrl>http://www.xilinus.com/</aws:NavigableUrl>
+        <aws:Title>Xilinus - Développement de Web Application - Consulting - Formati</aws:Title>
+      </aws:RelatedLink>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">www.xemion.com/</aws:DataUrl>
+        <aws:NavigableUrl>http://www.xemion.com/</aws:NavigableUrl>
+        <aws:Title>Xemion Web Design</aws:Title>
+      </aws:RelatedLink>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">www.workingwithrails.com/</aws:DataUrl>
+        <aws:NavigableUrl>http://www.workingwithrails.com/</aws:NavigableUrl>
+        <aws:Title>Working With Rails</aws:Title>
+      </aws:RelatedLink>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">www.webappers.com/</aws:DataUrl>
+        <aws:NavigableUrl>http://www.webappers.com/</aws:NavigableUrl>
+        <aws:Title>Best Open Source Resources for Web Developers | WebAppers</aws:Title>
+      </aws:RelatedLink>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">www.vimeo.com/</aws:DataUrl>
+        <aws:NavigableUrl>http://www.vimeo.com/</aws:NavigableUrl>
+        <aws:Title>Vimeo, Video Sharing For You</aws:Title>
+      </aws:RelatedLink>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">www.veilleperso.com/</aws:DataUrl>
+        <aws:NavigableUrl>http://www.veilleperso.com/</aws:NavigableUrl>
+        <aws:Title>Veille Perso</aws:Title>
+      </aws:RelatedLink>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">www.uncooped.com/</aws:DataUrl>
+        <aws:NavigableUrl>http://www.uncooped.com/</aws:NavigableUrl>
+        <aws:Title>Uncooped | Outdoor adventure network</aws:Title>
+      </aws:RelatedLink>
+      <aws:RelatedLink>
+        <aws:DataUrl type="canonical">www.ubuntu.com/</aws:DataUrl>
+        <aws:NavigableUrl>http://www.ubuntu.com/</aws:NavigableUrl>
+        <aws:Title>Ubuntu Linux</aws:Title>
+      </aws:RelatedLink>
+    </aws:RelatedLinks>
+    <aws:Categories>
+      <aws:CategoryData>
+        <aws:Title>Tools/Git</aws:Title>
+        <aws:AbsolutePath>Top/Computers/Software/Configuration_Management/Tools/Git</aws:AbsolutePath>
+      </aws:CategoryData>
+      <aws:CategoryData>
+        <aws:Title>Open Source/Project Hosting</aws:Title>
+        <aws:AbsolutePath>Top/Computers/Open_Source/Project_Hosting</aws:AbsolutePath>
+      </aws:CategoryData>
+    </aws:Categories>
+  </aws:Related>
+  <aws:TrafficData>
+    <aws:DataUrl type="canonical">github.com</aws:DataUrl>
+    <aws:Rank>69</aws:Rank>
+    <aws:RankByCountry>
+      <aws:Country Code="VN">
+        <aws:Rank>63</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>1.2%</aws:PageViews>
+          <aws:Users>1.0%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="IN">
+        <aws:Rank>98</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>4.7%</aws:PageViews>
+          <aws:Users>4.6%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="AT">
+        <aws:Rank>62</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.6%</aws:PageViews>
+          <aws:Users>0.6%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="TR">
+        <aws:Rank>148</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>1.1%</aws:PageViews>
+          <aws:Users>1.0%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="IL">
+        <aws:Rank>40</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.5%</aws:PageViews>
+          <aws:Users>0.5%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="TW">
+        <aws:Rank>96</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>1.7%</aws:PageViews>
+          <aws:Users>1.8%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="ES">
+        <aws:Rank>72</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>2.5%</aws:PageViews>
+          <aws:Users>2.4%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="US">
+        <aws:Rank>55</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>19.9%</aws:PageViews>
+          <aws:Users>20.5%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="HK">
+        <aws:Rank>58</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.8%</aws:PageViews>
+          <aws:Users>0.8%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="IR">
+        <aws:Rank>67</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>1.9%</aws:PageViews>
+          <aws:Users>2.3%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="BE">
+        <aws:Rank>66</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.6%</aws:PageViews>
+          <aws:Users>0.6%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="AU">
+        <aws:Rank>84</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.9%</aws:PageViews>
+          <aws:Users>1.0%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="PL">
+        <aws:Rank>45</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>1.7%</aws:PageViews>
+          <aws:Users>1.9%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="CH">
+        <aws:Rank>58</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.5%</aws:PageViews>
+          <aws:Users>0.6%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="SE">
+        <aws:Rank>56</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.7%</aws:PageViews>
+          <aws:Users>0.7%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="GB">
+        <aws:Rank>58</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>3.9%</aws:PageViews>
+          <aws:Users>3.9%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="FR">
+        <aws:Rank>50</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>4.5%</aws:PageViews>
+          <aws:Users>4.0%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="KR">
+        <aws:Rank>60</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>2.3%</aws:PageViews>
+          <aws:Users>2.5%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="BR">
+        <aws:Rank>112</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>1.9%</aws:PageViews>
+          <aws:Users>1.8%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="IT">
+        <aws:Rank>86</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>1.9%</aws:PageViews>
+          <aws:Users>2.3%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="CZ">
+        <aws:Rank>79</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.4%</aws:PageViews>
+          <aws:Users>0.6%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="MX">
+        <aws:Rank>190</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.6%</aws:PageViews>
+          <aws:Users>0.7%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="DK">
+        <aws:Rank>45</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>0.5%</aws:PageViews>
+          <aws:Users>0.5%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="NL">
+        <aws:Rank>56</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>1.0%</aws:PageViews>
+          <aws:Users>1.1%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="CA">
+        <aws:Rank>58</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>2.2%</aws:PageViews>
+          <aws:Users>2.1%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="JP">
+        <aws:Rank>23</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>19.0%</aws:PageViews>
+          <aws:Users>16.8%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="CN">
+        <aws:Rank>82</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>8.1%</aws:PageViews>
+          <aws:Users>8.4%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="O">
+        <aws:Rank/>
+        <aws:Contribution>
+          <aws:PageViews>10.9%</aws:PageViews>
+          <aws:Users>11.5%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+      <aws:Country Code="DE">
+        <aws:Rank>72</aws:Rank>
+        <aws:Contribution>
+          <aws:PageViews>3.6%</aws:PageViews>
+          <aws:Users>3.7%</aws:Users>
+        </aws:Contribution>
+      </aws:Country>
+    </aws:RankByCountry>
+    <aws:UsageStatistics>
+      <aws:UsageStatistic>
+        <aws:TimeRange>
+          <aws:Months>3</aws:Months>
+        </aws:TimeRange>
+        <aws:Rank>
+          <aws:Value>69</aws:Value>
+          <aws:Delta>+8</aws:Delta>
+        </aws:Rank>
+        <aws:Reach>
+          <aws:Rank>
+            <aws:Value>81</aws:Value>
+            <aws:Delta>+18</aws:Delta>
+          </aws:Rank>
+          <aws:PerMillion>
+            <aws:Value>9,333</aws:Value>
+            <aws:Delta>-29.59%</aws:Delta>
+          </aws:PerMillion>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:PerMillion>
+            <aws:Value>1,211</aws:Value>
+            <aws:Delta>-35.97%</aws:Delta>
+          </aws:PerMillion>
+          <aws:Rank>
+            <aws:Value>66</aws:Value>
+            <aws:Delta>9</aws:Delta>
+          </aws:Rank>
+          <aws:PerUser>
+            <aws:Value>5.640</aws:Value>
+            <aws:Delta>-9.032%</aws:Delta>
+          </aws:PerUser>
+        </aws:PageViews>
+      </aws:UsageStatistic>
+      <aws:UsageStatistic>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Rank>
+          <aws:Value>71</aws:Value>
+          <aws:Delta>+20</aws:Delta>
+        </aws:Rank>
+        <aws:Reach>
+          <aws:Rank>
+            <aws:Value>79</aws:Value>
+            <aws:Delta>+21</aws:Delta>
+          </aws:Rank>
+          <aws:PerMillion>
+            <aws:Value>9,460</aws:Value>
+            <aws:Delta>-39.34%</aws:Delta>
+          </aws:PerMillion>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:PerMillion>
+            <aws:Value>1,307</aws:Value>
+            <aws:Delta>-37.07%</aws:Delta>
+          </aws:PerMillion>
+          <aws:Rank>
+            <aws:Value>60</aws:Value>
+            <aws:Delta>15</aws:Delta>
+          </aws:Rank>
+          <aws:PerUser>
+            <aws:Value>5.71</aws:Value>
+            <aws:Delta>+3.8%</aws:Delta>
+          </aws:PerUser>
+        </aws:PageViews>
+      </aws:UsageStatistic>
+      <aws:UsageStatistic>
+        <aws:TimeRange>
+          <aws:Days>7</aws:Days>
+        </aws:TimeRange>
+        <aws:Rank>
+          <aws:Value>65</aws:Value>
+          <aws:Delta>-2</aws:Delta>
+        </aws:Rank>
+        <aws:Reach>
+          <aws:Rank>
+            <aws:Value>77</aws:Value>
+            <aws:Delta>-4</aws:Delta>
+          </aws:Rank>
+          <aws:PerMillion>
+            <aws:Value>10,300</aws:Value>
+            <aws:Delta>+6.9%</aws:Delta>
+          </aws:PerMillion>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:PerMillion>
+            <aws:Value>1,383</aws:Value>
+            <aws:Delta>+4.2%</aws:Delta>
+          </aws:PerMillion>
+          <aws:Rank>
+            <aws:Value>55</aws:Value>
+            <aws:Delta>-5</aws:Delta>
+          </aws:Rank>
+          <aws:PerUser>
+            <aws:Value>5.61</aws:Value>
+            <aws:Delta>-2.60%</aws:Delta>
+          </aws:PerUser>
+        </aws:PageViews>
+      </aws:UsageStatistic>
+      <aws:UsageStatistic>
+        <aws:TimeRange>
+          <aws:Days>1</aws:Days>
+        </aws:TimeRange>
+        <aws:Rank>
+          <aws:Value>60</aws:Value>
+          <aws:Delta>+2</aws:Delta>
+        </aws:Rank>
+        <aws:Reach>
+          <aws:Rank>
+            <aws:Value>69</aws:Value>
+            <aws:Delta>+1</aws:Delta>
+          </aws:Rank>
+          <aws:PerMillion>
+            <aws:Value>12,500</aws:Value>
+            <aws:Delta>-2.65%</aws:Delta>
+          </aws:PerMillion>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:PerMillion>
+            <aws:Value>1,610</aws:Value>
+            <aws:Delta>-3.68%</aws:Delta>
+          </aws:PerMillion>
+          <aws:Rank>
+            <aws:Value>47</aws:Value>
+            <aws:Delta>-1</aws:Delta>
+          </aws:Rank>
+          <aws:PerUser>
+            <aws:Value>5.59</aws:Value>
+            <aws:Delta>-1.06%</aws:Delta>
+          </aws:PerUser>
+        </aws:PageViews>
+      </aws:UsageStatistic>
+    </aws:UsageStatistics>
+    <aws:ContributingSubdomains>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>95.21%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>88.55%</aws:Percentage>
+          <aws:PerUser>5.30</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>help.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>18.94%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>7.08%</aws:Percentage>
+          <aws:PerUser>2.13</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>gist.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>7.70%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>1.95%</aws:Percentage>
+          <aws:PerUser>1.44</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>developer.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>3.27%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.67%</aws:Percentage>
+          <aws:PerUser>1.17</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>codeload.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>2.11%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.47%</aws:Percentage>
+          <aws:PerUser>1.26</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>desktop.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>1.13%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.20%</aws:Percentage>
+          <aws:PerUser>1.0</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>status.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>0.96%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.18%</aws:Percentage>
+          <aws:PerUser>1.0</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>services.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>0.83%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.16%</aws:Percentage>
+          <aws:PerUser>1.1</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>guides.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>0.79%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.16%</aws:Percentage>
+          <aws:PerUser>1.1</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>enterprise.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>0.64%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.12%</aws:Percentage>
+          <aws:PerUser>1.1</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>education.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>0.26%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.08%</aws:Percentage>
+          <aws:PerUser>1.7</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>pages.github.com</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>0.34%</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.06%</aws:Percentage>
+          <aws:PerUser>1.0</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+      <aws:ContributingSubdomain>
+        <aws:DataUrl>OTHER</aws:DataUrl>
+        <aws:TimeRange>
+          <aws:Months>1</aws:Months>
+        </aws:TimeRange>
+        <aws:Reach>
+          <aws:Percentage>0</aws:Percentage>
+        </aws:Reach>
+        <aws:PageViews>
+          <aws:Percentage>0.33%</aws:Percentage>
+          <aws:PerUser>0</aws:PerUser>
+        </aws:PageViews>
+      </aws:ContributingSubdomain>
+    </aws:ContributingSubdomains>
+  </aws:TrafficData>
+</aws:Alexa></aws:UrlInfoResult><aws:ResponseStatus xmlns:aws="http://alexa.amazonaws.com/doc/2005-07-11/"><aws:StatusCode>Success</aws:StatusCode></aws:ResponseStatus></aws:Response></aws:UrlInfoResponse>

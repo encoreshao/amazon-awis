@@ -1,0 +1,137 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: text/xml
+Transfer-Encoding: chunked
+Date: Thu, 09 Mar 2017 03:16:54 GMT
+
+<?xml version="1.0"?>
+<aws:CategoryListingsResponse xmlns:aws="http://alexa.amazonaws.com/doc/2005-07-11/"><aws:Response xmlns:aws="http://awis.amazonaws.com/doc/2005-07-11"><aws:OperationRequest><aws:RequestId>680c43ef-de20-167b-8d12-31c13d6ca0af</aws:RequestId></aws:OperationRequest><aws:CategoryListingsResult><aws:Alexa>
+  
+  <aws:CategoryListings>
+    <aws:RecursiveCount>799</aws:RecursiveCount>
+    <aws:Count>0</aws:Count>
+    <aws:Listings>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://ace2three.com/</aws:DataUrl>
+        <aws:Title>Ace2Three - the best Indian Rummy</aws:Title>
+        <aws:PopularityRank>7509</aws:PopularityRank>
+        <aws:Description>Play Indian Rummy and Win real cash prizes. Play rummy against live players in single and multi-table tournaments.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.pagat.com/</aws:DataUrl>
+        <aws:Title>Rules of Card Games</aws:Title>
+        <aws:PopularityRank>35587</aws:PopularityRank>
+        <aws:Description>A collection of hundreds of card and tile game rules arranged alphabetically, categorically, and geographically.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">https://www.setgame.com/set</aws:DataUrl>
+        <aws:Title>Set Enterprises</aws:Title>
+        <aws:PopularityRank>43812</aws:PopularityRank>
+        <aws:Description>Original publisher's site.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.acbl.org/</aws:DataUrl>
+        <aws:Title>American Contract Bridge League</aws:Title>
+        <aws:PopularityRank>49345</aws:PopularityRank>
+        <aws:Description>Organizes the game in North America. Includes tournaments calendar and results, places to play, events, shopping, members information, and learning resources. Official site.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.bridgewebs.com/</aws:DataUrl>
+        <aws:Title>BridgeWebs</aws:Title>
+        <aws:PopularityRank>51729</aws:PopularityRank>
+        <aws:Description>Enables bridge clubs and associations to provide a web site complete with calendar, news and results service. Offers interface with scoring and dealing programs.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.bridgewinners.com/</aws:DataUrl>
+        <aws:Title>Bridge Winners</aws:Title>
+        <aws:PopularityRank>73463</aws:PopularityRank>
+        <aws:Description>Offers bridge news, articles and problems. Includes ACBL convention card editor and a forum.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.rpbridge.net/</aws:DataUrl>
+        <aws:Title>For Bridge Players by Richard Pavlicek</aws:Title>
+        <aws:PopularityRank>106679</aws:PopularityRank>
+        <aws:Description>Offers bidding polls and play contests, quizzes, puzzles, articles, humor, lesson material, calculators and utilities. Includes "Standard American" bridge bidding guides.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.worldbridge.org/</aws:DataUrl>
+        <aws:Title>World Bridge Federation</aws:Title>
+        <aws:PopularityRank>109046</aws:PopularityRank>
+        <aws:Description>The official site of the body responsible for organizing world championships.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">https://www.setgame.com/quiddler</aws:DataUrl>
+        <aws:Title>Set Enterprises</aws:Title>
+        <aws:PopularityRank>118587</aws:PopularityRank>
+        <aws:Description>Official publisher with rules, tips and tricks.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.ebu.co.uk/</aws:DataUrl>
+        <aws:Title>English Bridge Union</aws:Title>
+        <aws:PopularityRank>120133</aws:PopularityRank>
+        <aws:Description>Organizes bridge in England. Provides schedule and results of national tournaments, bridge teaching programme, membership information. Official site.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.bridgeclues.com/</aws:DataUrl>
+        <aws:Title>Bridgeclues</aws:Title>
+        <aws:PopularityRank>123670</aws:PopularityRank>
+        <aws:Description>Presents daily articles by Mike Lawrence.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.sjgames.com/illuminati/</aws:DataUrl>
+        <aws:Title>Steve Jackson Games</aws:Title>
+        <aws:PopularityRank>125920</aws:PopularityRank>
+        <aws:Description>Official publishers site.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.usgamesinc.com/</aws:DataUrl>
+        <aws:Title>U.S. Games Systems, Inc.</aws:Title>
+        <aws:PopularityRank>137606</aws:PopularityRank>
+        <aws:Description>A wide variety of tarot cards and card games.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.betterbridge.com/</aws:DataUrl>
+        <aws:Title>Better Bridge</aws:Title>
+        <aws:PopularityRank>146137</aws:PopularityRank>
+        <aws:Description>Audrey Grant offers information on instructional material and courses, publications, quizzes and resources.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.bridgeguys.com/</aws:DataUrl>
+        <aws:Title>Bridge Guys</aws:Title>
+        <aws:PopularityRank>160647</aws:PopularityRank>
+        <aws:Description>Lists and defines a large number of systems and conventions.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.qldbridge.com/</aws:DataUrl>
+        <aws:Title>Queensland Bridge Association</aws:Title>
+        <aws:PopularityRank>165156</aws:PopularityRank>
+        <aws:Description>State association provides club directory, tournament calendar and results, newsletter and title holders. [Arana Hills]</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://rummy.com/</aws:DataUrl>
+        <aws:Title>Rummy</aws:Title>
+        <aws:PopularityRank>175376</aws:PopularityRank>
+        <aws:Description>Rules on Rummy games such as Gin Rummy and Rummy 500 with terms and scoring data.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.users.on.net/~bbclub/</aws:DataUrl>
+        <aws:Title>Ballina Bridge Club</aws:Title>
+        <aws:PopularityRank>211161</aws:PopularityRank>
+        <aws:Description>Presents schedule, results, newsletter and officers. [Ballina]</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.bridgeacademyofnorthdallas.com/</aws:DataUrl>
+        <aws:Title>Bridge Academy of North Dallas</aws:Title>
+        <aws:PopularityRank>218361</aws:PopularityRank>
+        <aws:Description>Includes game and class schedules, masterpoint standings, and tournament results.</aws:Description>
+      </aws:Listing>
+      <aws:Listing>
+        <aws:DataUrl type="navigable">http://www.bridgeworld.com/</aws:DataUrl>
+        <aws:Title>The Bridge World</aws:Title>
+        <aws:PopularityRank>218775</aws:PopularityRank>
+        <aws:Description>An introduction to bridge, practice problems and puzzles, bookshelf catalog of over 250 titles, an introduction to the Bridge World Magazine, and many other bridge resources.</aws:Description>
+      </aws:Listing>
+    </aws:Listings>
+    <aws:ReviewersRaveListings/>
+  </aws:CategoryListings>
+</aws:Alexa></aws:CategoryListingsResult><aws:ResponseStatus xmlns:aws="http://alexa.amazonaws.com/doc/2005-07-11/"><aws:StatusCode>Success</aws:StatusCode></aws:ResponseStatus></aws:Response></aws:CategoryListingsResponse>
