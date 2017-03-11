@@ -11,9 +11,11 @@ module Awis
       end
 
       def setup_data!(response)
-        content_data = { }
+        content_data = { 
+          owned_domains: []
+        }
         contact_info = { 
-          phone_number: []
+          phone_numbers: []
         }
         statistics = []
         related_related_links = []
@@ -49,8 +51,12 @@ module Awis
             content_data[:language_locale] = text
           elsif node.name == 'aws:LinksInCount'
             content_data[:links_in_count] = text
-          elsif node.name == 'aws:OwnedDomains'
-            content_data[:owned_domains] = text
+          elsif node.name == 'aws:Domain' && path == "#{content_node_name}/aws:OwnedDomains/aws:OwnedDomain/aws:Domain"
+            content_data[:owned_domains] << { domain: text }
+          elsif node.name == 'aws:Title' && path == "#{content_node_name}/aws:OwnedDomains/aws:OwnedDomain/aws:Title"
+            content_data[:owned_domains] << { title: text }
+          elsif node.name == 'aws:OnlineSince'
+            content_data[:online_since] = text
           elsif node.name == 'aws:DataUrl' && path == "#{root_node_name}/aws:ContactInfo/aws:DataUrl"
             contact_info[:data_url] = text
           elsif node.name == 'aws:OwnerName'
@@ -144,21 +150,47 @@ module Awis
     end
 
     class ContentData
-      attr_accessor :data_url, :site_title, :site_description, :speed_median_load_time, :speed_percentile, :adult_content, 
+      attr_accessor :data_url, :site_title, :site_description, :online_since, :speed_median_load_time, :speed_percentile, :adult_content, 
                     :language_locale, :links_in_count, :owned_domains
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        @owned_domains = []
+        owned_domain_objects = options.delete(:owned_domains)
+
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
+
+        owned_domains_relationship_collections(@owned_domains, owned_domain_objects, 2, OwnedDomain)
+      end
+
+      def owned_domains_relationship_collections(_object, items, items_count, kclass)
+        return if items.empty?
+
+        all_items = {}.array_slice_merge!(:item, items, items_count)
+        all_items.map { |item| _object << kclass.new(item) }
+      end
+    end
+
+    class OwnedDomain
+      attr_accessor :domain, :title
+
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
 
     class ContactInfo
       attr_accessor :data_url, :owner_name, :email, :physical_address, :company_stock_ticker, :phone_numbers
 
-      def initialize(hash)
-        phone_numbers = hash.delete(:phone_numbers)
+      def initialize(options)
+        phone_numbers = options.delete(:phone_numbers)
 
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
         phone_number_collections(phone_numbers)
       end
 
@@ -172,24 +204,30 @@ module Awis
     class PhoneNumber
       attr_accessor :number
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
 
     class RelatedLink
       attr_accessor :data_url, :navigable_url, :title
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
 
     class CategoryData
       attr_accessor :title, :absolute_path
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
 
@@ -198,8 +236,10 @@ module Awis
                     :reach_per_million_value, :reach_per_million_delta, :reach_page_views_per_million_value, :reach_page_views_per_million_delta,
                     :reach_page_views_rank_value, :reach_page_views_rank_delta, :reach_page_views_per_user_value, :reach_page_views_per_user_delta
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
   end

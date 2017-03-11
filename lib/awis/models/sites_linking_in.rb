@@ -32,8 +32,10 @@ module Awis
     class Site
       attr_accessor :title, :url
       
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
   end

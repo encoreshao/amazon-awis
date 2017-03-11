@@ -51,8 +51,10 @@ module Awis
     class HistoricalData
       attr_accessor :date, :page_views_per_million, :page_views_per_user, :rank, :reach_per_million
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
   end

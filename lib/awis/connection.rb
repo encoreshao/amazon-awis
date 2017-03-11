@@ -7,17 +7,13 @@ require "time"
 
 module Awis
   class Connection
-    attr_accessor :access_key_id, :secret_access_key, :proxy, :debug
+    attr_accessor :debug
     attr_writer :params
-
-    RFC_3986_UNRESERVED_CHARS = "-_.~a-zA-Z\\d".freeze
 
     def initialize
       raise CertificateError.new("Amazon access certificate is missing!") if Awis.config.access_key_id.nil? || Awis.config.secret_access_key.nil?
 
-      @access_key_id  = Awis.config.access_key_id
-      @secret_access_key  = Awis.config.secret_access_key
-      @debug = Awis.config.debug || nil
+      @debug = Awis.config.debug || false
     end
 
     def params
@@ -48,9 +44,13 @@ module Awis
     end
 
     def request
-      puts "[DEBUG] -> #{uri}" if debug
+      showing_request_uri
       
       Faraday.get(uri)
+    end
+
+    def showing_request_uri
+      puts "[DEBUG] -> #{uri}" if debug
     end
 
     def timestamp
@@ -58,33 +58,29 @@ module Awis
     end
 
     def signature
-      Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new("sha256"), secret_access_key, sign)).strip
+      Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest.new("sha256"), Awis.config.secret_access_key, sign)).strip
     end
 
     def uri
-      URI.parse("http://#{Awis::API_HOST}/?" + query + "&Signature=" + CGI::escape(signature))
+      URI.parse("http://#{Awis::API_HOST}/?" + query_params + "&Signature=" + CGI::escape(signature))
     end
 
     def default_params
       {
-        "AWSAccessKeyId"   => access_key_id,
+        "AWSAccessKeyId"   => Awis.config.access_key_id,
         "SignatureMethod"  => "HmacSHA256",
-        "SignatureVersion" => "2",
+        "SignatureVersion" => Awis::API_SIGNATURE_VERSION,
         "Timestamp"        => timestamp,
         "Version"          => Awis::API_VERSION
       }
     end
 
     def sign
-      "GET\n" + Awis::API_HOST + "\n/\n" + query
+      "GET\n" + Awis::API_HOST + "\n/\n" + query_params
     end
 
-    def query
-      default_params.merge(params).map { |key, value| "#{key}=#{regexp_params(value)}" }.sort.join("&")
-    end
-
-    def regexp_params(value)
-      URI.escape(value.to_s, Regexp.new("[^#{RFC_3986_UNRESERVED_CHARS}]"))
+    def query_params
+      default_params.merge(params).map { |key, value| "#{key}=#{CGI::escape(value.to_s)}" }.sort.join("&")
     end
   end
 end

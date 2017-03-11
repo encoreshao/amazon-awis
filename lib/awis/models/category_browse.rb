@@ -91,32 +91,40 @@ module Awis
     class Category
       attr_accessor :path, :title, :sub_category_count, :total_listing_count
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
 
     class LanguageCategory
       attr_accessor :path, :title, :sub_category_count, :total_listing_count
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
 
     class RelatedCategory
       attr_accessor :path, :title, :sub_category_count, :total_listing_count
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
 
     class LetterBar
       attr_accessor :path, :title, :sub_category_count, :total_listing_count
 
-      def initialize(hash)
-        hash.map { |k, v| instance_variable_set("@#{k}", v) }
+      def initialize(options)
+        options.each do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
       end
     end
   end

@@ -12,9 +12,9 @@ gem install awis-sdk-ruby
 ##### Configure your amazon certificate
 
 ```
-AWIS_CONFIG = YAML.load(File.read('awis.yml'))
-
 require 'awis'
+
+AWIS_CONFIG = YAML.load(File.read('awis.yml'))
 Awis.config do |c|
   c.access_key_id = AWIS_CONFIG['access_key_id']
   c.secret_access_key = AWIS_CONFIG['secret_access_key']
