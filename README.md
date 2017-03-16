@@ -29,6 +29,11 @@ client = Awis::Client.new
 url_info = client.url_info(url: "site.com")
 ```
 
+If you looking for the API request URI:
+
+* Awis::API::UrlInfo.new.load_request_uri(url: 'site.com')
+
+
 Returns object that contains attributes:
 
 * data_url
@@ -41,9 +46,14 @@ Returns object that contains relationships:
 * content_data [:data_url, :site_title, :site_description, :speed_median_load_time, :speed_percentile, :adult_content, :language_locale, :links_in_count, :owned_domains]
 * usage_statistics [:time_range_months, :time_range_days, :rank_value, :rank_delta, :reach_rank_value, :reach_rank_delta, 
                     :reach_per_million_value, :reach_per_million_delta, :reach_page_views_per_million_value, :reach_page_views_per_million_delta,
-                    :reach_page_views_rank_value, :reach_page_views_rank_delta, :reach_page_views_per_user_value, :reach_page_views_per_user_delta]
+                    :reach_page_views_rank_value, :reach_page_views_rank_delta, :reach_page_views_per_user_value, :reach_page_views_per_user_delta] 
+    - add two methods: [range_type, range_count]
 * related_links [:data_url, :navigable_url, :title]
 * categories [:title, :absolute_path]
+
+New methods:
+
+* is_404?
 
 You can specify options:
 
@@ -56,6 +66,10 @@ You can specify options:
 client = Awis::Client.new
 sites_linking_in = client.sites_linking_in(url: "site.com")
 ```
+
+If you looking for the API request URI:
+
+* Awis::API::SitesLinkingIn.new.load_request_uri(url: 'site.com')
 
 Returns object that contains relationships:
 
@@ -73,6 +87,10 @@ You can specify options:
 client = Awis::Client.new
 traffic_history = client.traffic_history(url: "site.com")
 ```
+
+If you looking for the API request URI:
+
+* Awis::API::TrafficHistory.new.load_request_uri(url: 'site.com')
 
 Returns object that contains methods:
 
@@ -97,6 +115,10 @@ client = Awis::Client.new
 category_listings = client.category_listings(path: "Top/Games/Card_Games")
 ```
 
+If you looking for the API request URI:
+
+* Awis::API::CategoryListings.new.load_request_uri(path: "Top/Games/Card_Games")
+
 Returns object that contains methods:
 
 * count
@@ -112,6 +134,10 @@ Returns object that contains relationships:
 client = Awis::Client.new
 category_browses = client.category_browse(path: "Top/Games/Card_Games")
 ```
+
+If you looking for the API request URI:
+
+* Awis::API::CategoryBrowse.new.load_request_uri(path: "Top/Games/Card_Games")
 
 Returns object that contains methods:
 
