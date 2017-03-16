@@ -5,16 +5,26 @@ module Awis
 
       def fetch(arguments = {})
         raise ArgumentError.new("Valid category path (Top/Arts, Top/Business/Automotive)") unless arguments.has_key?(:path)
-        @arguments = arguments
-
-        @arguments[:response_group] = Array(arguments.fetch(:response_group, DEFAULT_RESPONSE_GROUP))
-        @arguments[:descriptions]   = arguments.fetch(:descriptions, true)
-
+        validation_arguments!(arguments)
+        
         @response_body = Awis::Connection.new.get(params)
         self
       end
 
+      def load_request_uri(arguments = {})
+        validation_arguments!(arguments)
+
+        super(params)
+      end
+
       private
+      def validation_arguments!(arguments)
+        @arguments = arguments
+
+        @arguments[:response_group] = Array(arguments.fetch(:response_group, DEFAULT_RESPONSE_GROUP))
+        @arguments[:descriptions]   = arguments.fetch(:descriptions, true)
+      end
+
       def params
         {
           "Action"        => action_name,

@@ -5,7 +5,7 @@ module Awis
 
       def initialize(response)
         @sites = []
-        setup_data!( loading_response(response) )
+        setup_data! loading_response(response)
       end
 
       def setup_data!(response)
@@ -13,6 +13,7 @@ module Awis
 
         response.each_node do |node, path|
           text = node.inner_xml
+          text = nil if (text.class == String && text.empty?)
 
           if node.name == 'aws:RequestId'
             @request_id ||= text
@@ -29,14 +30,8 @@ module Awis
       end
     end
 
-    class Site
+    class Site < BaseEntity
       attr_accessor :title, :url
-      
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
   end
 end

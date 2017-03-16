@@ -16,6 +16,12 @@ module Awis
         self.class.name.split(/\:\:/)[-1]
       end
 
+      def load_request_uri(params)
+        collection = Awis::Connection.new
+        collection.setup_params(params)
+        collection.uri
+      end
+
       class << self
         def loading_data_from_xml(xml_file_path)
           MultiXml.parse(File.new(xml_file_path))

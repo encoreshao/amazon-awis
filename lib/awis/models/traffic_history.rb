@@ -5,7 +5,7 @@ module Awis
 
       def initialize(response)
         @historical_data = []
-        setup_data!( loading_response(response) )
+        setup_data! loading_response(response)
       end
 
       def setup_data!(response)
@@ -14,6 +14,7 @@ module Awis
         response.each_node do |node, path|
           text = node.inner_xml
           text = text.to_i if text.to_i.to_s === text
+          text = nil if (text.class == String && text.empty?)
 
           if node.name == 'aws:RequestId'
             @request_id ||= text
@@ -48,14 +49,8 @@ module Awis
       end
     end
 
-    class HistoricalData
+    class HistoricalData < BaseEntity
       attr_accessor :date, :page_views_per_million, :page_views_per_user, :rank, :reach_per_million
-
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
   end
 end

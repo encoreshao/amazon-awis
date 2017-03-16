@@ -20,9 +20,13 @@ module Awis
       @params ||= {}
     end
 
-    def get(params = {})
+    def setup_params(params)
       self.params = params
+    end
 
+    def get(params = {})
+      setup_params(params)
+      
       handle_response(request).body.force_encoding(Encoding::UTF_8)
     end
 

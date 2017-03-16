@@ -7,7 +7,8 @@ module Awis
         @usage_statistics = []
         @related_links = []
         @categories = []
-        setup_data!( loading_response(response) )
+        
+        setup_data! loading_response(response)
       end
 
       def setup_data!(response)
@@ -24,6 +25,7 @@ module Awis
         response.each_node do |node, path|
           text = node.inner_xml
           text = text.to_i if text.to_i.to_s === text && node.name != 'aws:Delta'
+          text = nil if (text.class == String && text.empty?)
 
           if node.name == 'aws:RequestId'
             @request_id ||= text
@@ -118,6 +120,10 @@ module Awis
         relationship_collections(@categories, category_data, 3, CategoryData)
       end
 
+      def is_404?
+        success? && rank == 404
+      end
+
       def init_entity_data(attr_name, data, kclass)
         return if data.empty?
 
@@ -149,18 +155,14 @@ module Awis
       end
     end
 
-    class ContentData
+    class ContentData < BaseEntity
       attr_accessor :data_url, :site_title, :site_description, :online_since, :speed_median_load_time, :speed_percentile, :adult_content, 
                     :language_locale, :links_in_count, :owned_domains
 
       def initialize(options)
         @owned_domains = []
         owned_domain_objects = options.delete(:owned_domains)
-
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-
+        super(options)
         owned_domains_relationship_collections(@owned_domains, owned_domain_objects, 2, OwnedDomain)
       end
 
@@ -172,25 +174,16 @@ module Awis
       end
     end
 
-    class OwnedDomain
+    class OwnedDomain < BaseEntity
       attr_accessor :domain, :title
-
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
 
-    class ContactInfo
+    class ContactInfo < BaseEntity
       attr_accessor :data_url, :owner_name, :email, :physical_address, :company_stock_ticker, :phone_numbers
 
       def initialize(options)
         phone_numbers = options.delete(:phone_numbers)
-
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
+        super(options)
         phone_number_collections(phone_numbers)
       end
 
@@ -201,45 +194,31 @@ module Awis
       end
     end
 
-    class PhoneNumber
+    class PhoneNumber < BaseEntity
       attr_accessor :number
-
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
 
-    class RelatedLink
+    class RelatedLink < BaseEntity
       attr_accessor :data_url, :navigable_url, :title
-
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
 
-    class CategoryData
+    class CategoryData < BaseEntity
       attr_accessor :title, :absolute_path
-
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
 
-    class UsageStatistic
+    class UsageStatistic < BaseEntity
       attr_accessor :time_range_months, :time_range_days, :rank_value, :rank_delta, :reach_rank_value, :reach_rank_delta, 
                     :reach_per_million_value, :reach_per_million_delta, :reach_page_views_per_million_value, :reach_page_views_per_million_delta,
                     :reach_page_views_rank_value, :reach_page_views_rank_delta, :reach_page_views_per_user_value, :reach_page_views_per_user_delta
 
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
+      def range_type
+        return 'month' unless time_range_months.blank?
+
+        'day'
+      end
+
+      def range_count
+        (time_range_months || time_range_days)
       end
     end
   end

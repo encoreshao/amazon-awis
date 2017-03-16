@@ -3,6 +3,20 @@ module Awis
     class CategoryListings < Base
       def fetch(arguments = {})
         raise ArgumentError, "You must provide a URL" unless arguments.has_key?(:path)
+        validation_arguments!(arguments)
+        
+        @response_body = Awis::Connection.new.get(params)
+        self
+      end
+
+      def load_request_uri(arguments = {})
+        validation_arguments!(arguments)
+
+        super(params)
+      end
+
+      private
+      def validation_arguments!(arguments)
         @arguments = arguments
 
         @arguments[:sort_by]      = arguments.fetch(:sort_by, "popularity")
@@ -10,12 +24,8 @@ module Awis
         @arguments[:descriptions] = arguments.fetch(:descriptions, true)
         @arguments[:start]        = arguments.fetch(:start, 0)
         @arguments[:count]        = arguments.fetch(:count, 20)
-
-        @response_body = Awis::Connection.new.get(params)
-        self
       end
 
-      private
       def params
         {
           "Action"        => "CategoryListings",

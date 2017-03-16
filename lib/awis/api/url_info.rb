@@ -5,18 +5,24 @@ module Awis
 
       def fetch(arguments = {})
         raise ArgumentError, "Any valid URL." unless arguments.has_key?(:url)
-        @arguments = arguments
-        @arguments[:response_group] = Array(arguments.fetch(:response_group, DEFAULT_RESPONSE_GROUP))
+        validation_arguments!(arguments)
 
-        loading_response_data
+        @response_body = Awis::Connection.new.get(params)
         self
       end
 
-      def loading_response_data
-        @response_body = Awis::Connection.new.get(params)
+      def load_request_uri(arguments = {})
+        validation_arguments!(arguments)
+
+        super(params)
       end
 
       private
+      def validation_arguments!(arguments)
+        @arguments = arguments
+        @arguments[:response_group] = Array(arguments.fetch(:response_group, DEFAULT_RESPONSE_GROUP))
+      end
+
       def params
         {
           "Action"        => action_name,

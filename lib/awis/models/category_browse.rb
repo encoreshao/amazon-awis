@@ -9,7 +9,7 @@ module Awis
         @related_categories = []
         @letter_bars = []
         
-        setup_data!( loading_response(response) )
+        setup_data! loading_response(response)
       end
 
       def setup_data!(response)
@@ -21,6 +21,7 @@ module Awis
         response.each_node do |node, path|
           text = node.inner_xml
           text = text.to_i if text.to_i.to_s === text
+          text = nil if (text.class == String && text.empty?)
 
           if node.name == 'aws:RequestId'
             @request_id ||= text
@@ -88,44 +89,20 @@ module Awis
       end
     end
 
-    class Category
+    class Category < BaseEntity
       attr_accessor :path, :title, :sub_category_count, :total_listing_count
-
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
 
-    class LanguageCategory
+    class LanguageCategory < BaseEntity
       attr_accessor :path, :title, :sub_category_count, :total_listing_count
-
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
 
-    class RelatedCategory
+    class RelatedCategory < BaseEntity
       attr_accessor :path, :title, :sub_category_count, :total_listing_count
-
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
 
-    class LetterBar
+    class LetterBar < BaseEntity
       attr_accessor :path, :title, :sub_category_count, :total_listing_count
-
-      def initialize(options)
-        options.each do |key, value|
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
   end
 end
