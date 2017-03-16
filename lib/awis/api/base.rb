@@ -11,6 +11,10 @@ module Awis
         self
       end
 
+      def request_description_params
+        arguments[:descriptions].to_s.capitalize
+      end
+
       def parsed_body
         @parsed_body ||= MultiXml.parse(response_body)
       end

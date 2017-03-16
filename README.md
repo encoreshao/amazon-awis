@@ -152,7 +152,7 @@ Returns object that contains relationships:
 
 ##### Request ID and Status Code
 
-You can retrieve status code and request id
+You can retrieve status code and requestID
 
 * request_id
 * status_code

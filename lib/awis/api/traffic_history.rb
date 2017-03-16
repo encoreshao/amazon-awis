@@ -1,6 +1,8 @@
 module Awis
   module API
     class TrafficHistory < Base
+      DEFAULT_RESPONSE_GROUP = %w(history).freeze
+
       def load_request_uri(arguments = {})
         validation_arguments!(arguments)
 
@@ -10,11 +12,11 @@ module Awis
       private
       def params
         {
-          "Action"        => "TrafficHistory",
+          "Action"        => action_name,
           "Url"           => arguments[:url],
-          "ResponseGroup" => "History",
+          "ResponseGroup" => response_groups,
           "Range"         => arguments[:range],
-          "Start"         => start_param,
+          "Start"         => start_date,
         }
       end
 
@@ -26,8 +28,12 @@ module Awis
         @arguments[:start] = arguments.fetch(:start) { Time.now - (3600 * 24 * @arguments[:range].to_i) }
       end
 
-      def start_param
+      def start_date
         arguments[:start].respond_to?(:strftime) ? arguments[:start].strftime("%Y%m%d") : arguments[:start]
+      end
+
+      def response_groups
+        DEFAULT_RESPONSE_GROUP.map { |group| camelize(group) }.join(",")
       end
     end
   end

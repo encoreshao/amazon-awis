@@ -207,9 +207,12 @@ module Awis
     end
 
     class UsageStatistic < BaseEntity
-      attr_accessor :time_range_months, :time_range_days, :rank_value, :rank_delta, :reach_rank_value, :reach_rank_delta,
-                    :reach_per_million_value, :reach_per_million_delta, :reach_page_views_per_million_value, :reach_page_views_per_million_delta,
-                    :reach_page_views_rank_value, :reach_page_views_rank_delta, :reach_page_views_per_user_value, :reach_page_views_per_user_delta
+      attr_accessor :time_range_months, :time_range_days, :rank_value, :rank_delta,
+                    :reach_rank_value, :reach_rank_delta,
+                    :reach_per_million_value, :reach_per_million_delta,
+                    :reach_page_views_per_million_value, :reach_page_views_per_million_delta,
+                    :reach_page_views_rank_value, :reach_page_views_rank_delta,
+                    :reach_page_views_per_user_value, :reach_page_views_per_user_delta
 
       def range_type
         return 'month' unless time_range_months.blank?

@@ -28,11 +28,11 @@ module Awis
 
       def params
         {
-          "Action"        => "CategoryListings",
-          "ResponseGroup" => DEFAULT_RESPONSE_GROUP[0],
+          "Action"        => action_name,
+          "ResponseGroup" => response_groups,
           "Path"          => arguments[:path],
           "Recursive"     => recursive_param,
-          "Descriptions"  => descriptions_params,
+          "Descriptions"  => request_description_params,
           "SortBy"        => sort_by_param,
           "Count"         => arguments[:count],
           "Start"         => arguments[:start],
@@ -43,12 +43,12 @@ module Awis
         arguments[:recursive].to_s.capitalize
       end
 
-      def descriptions_params
-        arguments[:descriptions].to_s.capitalize
-      end
-
       def sort_by_param
         camelize(arguments[:sort_by])
+      end
+
+      def response_groups
+        DEFAULT_RESPONSE_GROUP.map { |group| camelize(group) }.join(",")
       end
     end
   end

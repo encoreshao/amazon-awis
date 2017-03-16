@@ -28,16 +28,12 @@ module Awis
           "Action"        => action_name,
           "ResponseGroup" => response_groups,
           "Path"          => arguments[:path],
-          "Descriptions"  => descriptions_params
+          "Descriptions"  => request_description_params
         }
       end
 
       def response_groups
         arguments[:response_group].sort.map { |group| camelize(group) }.join(",")
-      end
-
-      def descriptions_params
-        arguments[:descriptions].to_s.capitalize
       end
     end
   end

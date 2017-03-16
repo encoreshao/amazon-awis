@@ -20,12 +20,16 @@ module Awis
 
       def params
         {
-          "Action"        => "SitesLinkingIn",
+          "Action"        => action_name,
           "Url"           => arguments[:url],
-          "ResponseGroup" => DEFAULT_RESPONSE_GROUP[0],
+          "ResponseGroup" => response_groups,
           "Count"         => arguments[:count],
           "Start"         => arguments[:start]
         }
+      end
+
+      def response_groups
+        DEFAULT_RESPONSE_GROUP.map { |group| camelize(group) }.join(",")
       end
     end
   end
