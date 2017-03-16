@@ -4,8 +4,19 @@ module Awis
       include Utils::Extra
       attr_reader :arguments, :response_body
 
+      def fetch(arguments = {})
+        validation_arguments!(arguments)
+
+        loading_response_body
+        self
+      end
+
       def parsed_body
         @parsed_body ||= MultiXml.parse(response_body)
+      end
+
+      def loading_response_body
+        @response_body = Awis::Connection.new.get(params)
       end
 
       def root_node_name
@@ -20,6 +31,11 @@ module Awis
         collection = Awis::Connection.new
         collection.setup_params(params)
         collection.uri
+      end
+
+      def before_validation_arguments(arguments)
+        raise ArgumentError, "Invalid arguments. should be like { url: 'site.com' }" unless arguments.is_a?(Hash)
+        raise ArgumentError, "Invalid arguments. the url must be configured." unless arguments.has_key?(:url)
       end
 
       class << self

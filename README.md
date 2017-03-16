@@ -44,9 +44,9 @@ Returns object that contains relationships:
 
 * contact_info [:data_url, :owner_name, :email, :physical_address, :company_stock_ticker, :phone_numbers]
 * content_data [:data_url, :site_title, :site_description, :speed_median_load_time, :speed_percentile, :adult_content, :language_locale, :links_in_count, :owned_domains]
-* usage_statistics [:time_range_months, :time_range_days, :rank_value, :rank_delta, :reach_rank_value, :reach_rank_delta, 
+* usage_statistics [:time_range_months, :time_range_days, :rank_value, :rank_delta, :reach_rank_value, :reach_rank_delta,
                     :reach_per_million_value, :reach_per_million_delta, :reach_page_views_per_million_value, :reach_page_views_per_million_delta,
-                    :reach_page_views_rank_value, :reach_page_views_rank_delta, :reach_page_views_per_user_value, :reach_page_views_per_user_delta] 
+                    :reach_page_views_rank_value, :reach_page_views_rank_delta, :reach_page_views_per_user_value, :reach_page_views_per_user_delta]
     - add two methods: [range_type, range_count]
 * related_links [:data_url, :navigable_url, :title]
 * categories [:title, :absolute_path]
@@ -57,7 +57,7 @@ New methods:
 
 You can specify options:
 
-* url 
+* url
 * response_group - which data to include in response (i.e. ["rank", "contact_info", "content_data"]) - defaults to all available
 
 ##### Get Sites Linking In

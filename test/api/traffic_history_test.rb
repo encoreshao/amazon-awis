@@ -37,7 +37,7 @@ describe Awis::API::TrafficHistory do
     end
 
     it "Should be returns history datas" do
-      assert_equal 21, @traffic_history.historical_data.size
+      assert_equal 26, @traffic_history.historical_data.size
     end
   end
 end

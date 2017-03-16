@@ -3,14 +3,6 @@ module Awis
     class UrlInfo < Base
       DEFAULT_RESPONSE_GROUP = %w(related_links categories rank rank_by_country usage_stats adult_content speed language owned_domains links_in_count site_data).freeze
 
-      def fetch(arguments = {})
-        raise ArgumentError, "Any valid URL." unless arguments.has_key?(:url)
-        validation_arguments!(arguments)
-
-        @response_body = Awis::Connection.new.get(params)
-        self
-      end
-
       def load_request_uri(arguments = {})
         validation_arguments!(arguments)
 
@@ -19,6 +11,8 @@ module Awis
 
       private
       def validation_arguments!(arguments)
+        before_validation_arguments(arguments)
+
         @arguments = arguments
         @arguments[:response_group] = Array(arguments.fetch(:response_group, DEFAULT_RESPONSE_GROUP))
       end

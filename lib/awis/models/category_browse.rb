@@ -8,7 +8,7 @@ module Awis
         @language_categories = []
         @related_categories = []
         @letter_bars = []
-        
+
         setup_data! loading_response(response)
       end
 

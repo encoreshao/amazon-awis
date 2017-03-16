@@ -1,13 +1,7 @@
 module Awis
   module API
     class CategoryListings < Base
-      def fetch(arguments = {})
-        raise ArgumentError, "You must provide a URL" unless arguments.has_key?(:path)
-        validation_arguments!(arguments)
-        
-        @response_body = Awis::Connection.new.get(params)
-        self
-      end
+      DEFAULT_RESPONSE_GROUP = %w(listings).freeze
 
       def load_request_uri(arguments = {})
         validation_arguments!(arguments)
@@ -16,9 +10,15 @@ module Awis
       end
 
       private
-      def validation_arguments!(arguments)
-        @arguments = arguments
+      def before_validation_arguments(arguments)
+        raise ArgumentError, "Invalid arguments. should be like { path: '/Top/Games/Card_Games' }" unless arguments.is_a?(Hash)
+        raise ArgumentError, "Invalid arguments. the path must be configured." unless arguments.has_key?(:path)
+      end
 
+      def validation_arguments!(arguments)
+        before_validation_arguments(arguments)
+
+        @arguments = arguments
         @arguments[:sort_by]      = arguments.fetch(:sort_by, "popularity")
         @arguments[:recursive]    = arguments.fetch(:recursive, true)
         @arguments[:descriptions] = arguments.fetch(:descriptions, true)
@@ -29,7 +29,7 @@ module Awis
       def params
         {
           "Action"        => "CategoryListings",
-          "ResponseGroup" => "Listings",
+          "ResponseGroup" => DEFAULT_RESPONSE_GROUP[0],
           "Path"          => arguments[:path],
           "Recursive"     => recursive_param,
           "Descriptions"  => descriptions_params,

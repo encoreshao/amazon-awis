@@ -26,7 +26,7 @@ module Awis
 
     def get(params = {})
       setup_params(params)
-      
+
       handle_response(request).body.force_encoding(Encoding::UTF_8)
     end
 
@@ -49,7 +49,7 @@ module Awis
 
     def request
       showing_request_uri
-      
+
       Faraday.get(uri)
     end
 

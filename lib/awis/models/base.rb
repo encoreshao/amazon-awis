@@ -14,7 +14,7 @@ module Awis
       def action_name
         self.class.name.split(/\:\:/)[-1]
       end
-      
+
       def relationship_collections(_object, items, items_count, kclass)
         return if items.empty?
 

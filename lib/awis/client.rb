@@ -1,6 +1,5 @@
 module Awis
   class Client
-
     def initialize
       raise CertificateError.new("Amazon access certificate is missing!") if Awis.config.access_key_id.nil? || Awis.config.secret_access_key.nil?
     end

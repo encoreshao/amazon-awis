@@ -7,15 +7,15 @@ module Awis
         @usage_statistics = []
         @related_links = []
         @categories = []
-        
+
         setup_data! loading_response(response)
       end
 
       def setup_data!(response)
-        content_data = { 
+        content_data = {
           owned_domains: []
         }
-        contact_info = { 
+        contact_info = {
           phone_numbers: []
         }
         statistics = []
@@ -156,7 +156,7 @@ module Awis
     end
 
     class ContentData < BaseEntity
-      attr_accessor :data_url, :site_title, :site_description, :online_since, :speed_median_load_time, :speed_percentile, :adult_content, 
+      attr_accessor :data_url, :site_title, :site_description, :online_since, :speed_median_load_time, :speed_percentile, :adult_content,
                     :language_locale, :links_in_count, :owned_domains
 
       def initialize(options)
@@ -207,7 +207,7 @@ module Awis
     end
 
     class UsageStatistic < BaseEntity
-      attr_accessor :time_range_months, :time_range_days, :rank_value, :rank_delta, :reach_rank_value, :reach_rank_delta, 
+      attr_accessor :time_range_months, :time_range_days, :rank_value, :rank_delta, :reach_rank_value, :reach_rank_delta,
                     :reach_per_million_value, :reach_per_million_delta, :reach_page_views_per_million_value, :reach_page_views_per_million_delta,
                     :reach_page_views_rank_value, :reach_page_views_rank_delta, :reach_page_views_per_user_value, :reach_page_views_per_user_delta
 

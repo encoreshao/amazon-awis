@@ -3,14 +3,6 @@ module Awis
     class CategoryBrowse < Base
       DEFAULT_RESPONSE_GROUP = %w(categories related_categories language_categories letter_bars).freeze
 
-      def fetch(arguments = {})
-        raise ArgumentError.new("Valid category path (Top/Arts, Top/Business/Automotive)") unless arguments.has_key?(:path)
-        validation_arguments!(arguments)
-        
-        @response_body = Awis::Connection.new.get(params)
-        self
-      end
-
       def load_request_uri(arguments = {})
         validation_arguments!(arguments)
 
@@ -18,9 +10,15 @@ module Awis
       end
 
       private
-      def validation_arguments!(arguments)
-        @arguments = arguments
+      def before_validation_arguments(arguments)
+        raise ArgumentError, "Invalid arguments. should be like { path: 'Top/Arts' }" unless arguments.is_a?(Hash)
+        raise ArgumentError, "Invalid arguments. the path must be configured." unless arguments.has_key?(:path)
+      end
 
+      def validation_arguments!(arguments)
+        before_validation_arguments(arguments)
+
+        @arguments = arguments
         @arguments[:response_group] = Array(arguments.fetch(:response_group, DEFAULT_RESPONSE_GROUP))
         @arguments[:descriptions]   = arguments.fetch(:descriptions, true)
       end

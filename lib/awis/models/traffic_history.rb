@@ -10,7 +10,7 @@ module Awis
 
       def setup_data!(response)
         datas = []
-        
+
         response.each_node do |node, path|
           text = node.inner_xml
           text = text.to_i if text.to_i.to_s === text
@@ -26,15 +26,13 @@ module Awis
             @site ||= text
           elsif node.name == 'aws:Start'
             @start ||= text
-          elsif node.name == 'aws:Rank'
-            @rank ||= text
           elsif node.name == 'aws:Date' && path == "#{base_node_name}/aws:Date"
             datas << { date: text }
           elsif node.name == 'aws:PerMillion' && path == "#{base_node_name}/aws:PageViews/aws:PerMillion"
             datas << { page_views_per_million: text }
           elsif node.name == 'aws:PerUser' && path == "#{base_node_name}/aws:PageViews/aws:PerUser"
             datas << { page_views_per_user: text }
-          elsif node.name == 'aws:PerMillion' && path == "#{base_node_name}/aws:Rank"
+          elsif node.name == 'aws:Rank' && path == "#{base_node_name}/aws:Rank"
             datas << { rank: text }
           elsif node.name == 'aws:PerMillion' && path == "#{base_node_name}/aws:Reach/aws:PerMillion"
             datas << { reach_per_million: text }
