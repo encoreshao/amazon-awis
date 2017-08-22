@@ -7,13 +7,14 @@ require "time"
 
 module Awis
   class Connection
-    attr_accessor :debug
+    attr_accessor :debug, :protocol
     attr_writer :params
 
     def initialize
       raise CertificateError.new("Amazon access certificate is missing!") if Awis.config.access_key_id.nil? || Awis.config.secret_access_key.nil?
 
       @debug = Awis.config.debug || false
+      @protocol = Awis.config.protocol || 'https'
     end
 
     def params
@@ -66,7 +67,7 @@ module Awis
     end
 
     def uri
-      URI.parse("http://#{Awis::API_HOST}/?" + query_params + "&Signature=" + CGI::escape(signature))
+      URI.parse("#{protocol}://#{Awis::API_HOST}/?" + query_params + "&Signature=" + CGI::escape(signature))
     end
 
     def default_params
