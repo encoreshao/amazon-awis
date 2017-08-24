@@ -34,7 +34,7 @@ module Awis
       def load_request_uri(params)
         collection = Awis::Connection.new
         collection.setup_params(params)
-        collection.uri
+        collection.request_url
       end
 
       def before_validation_arguments(arguments)

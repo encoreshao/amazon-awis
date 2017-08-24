@@ -19,7 +19,10 @@ Awis.config do |c|
   c.access_key_id = AWIS_CONFIG['access_key_id']
   c.secret_access_key = AWIS_CONFIG['secret_access_key']
   c.debug = AWIS_CONFIG['debug']
-  c.protocol = 'https'
+  c.protocol = 'https'    # Default 'https'
+  c.timeout = 5           # Default 5
+  c.open_timeout = 5      # Default 2
+  c.logger = false        # Default nil
 end
 ```
 
