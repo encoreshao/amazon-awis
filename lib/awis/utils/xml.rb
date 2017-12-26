@@ -8,7 +8,7 @@ module Awis
       def each_node(attributes_in_path = false)
         reader = Nokogiri::XML::Reader(@data)
         nodes = ['']
-        
+
         reader.each do |node|
           if node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
             if attributes_in_path && node.attributes.size > 0

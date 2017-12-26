@@ -23,7 +23,6 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 1.9.3"
 
   spec.add_dependency "multi_xml", ">= 0.5.0"
-  spec.add_dependency "faraday", "~> 0.9.0"
   spec.add_dependency "nokogiri", '~> 1.6.8'
 
   spec.add_development_dependency "minitest"

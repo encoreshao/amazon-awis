@@ -8,7 +8,7 @@ describe Awis::API::CategoryListings do
         c.secret_access_key = 'secret'
       end
 
-      stub_request(:get, %r{http://awis.amazonaws.com}).to_return(fixture("category_listings/card_games.txt"))
+      stub_request(:get, api_url).to_return(fixture("category_listings/card_games.txt"))
       @category_listings = Awis::Client.new.category_listings(:path => "Top/Games/Card_Games")
     end
 
@@ -24,15 +24,15 @@ describe Awis::API::CategoryListings do
       assert_equal true, @category_listings.success?
     end
 
-    it "Should be returns recursive count" do
+    it "Should be return attribute recursive count" do
       assert_equal 799, @category_listings.recursive_count
     end
 
-    it "Should be returns count" do
+    it "Should be return attribute count" do
       assert_equal 0, @category_listings.count
     end
 
-    it "Should be returns listings" do
+    it "Should be return attribute listings" do
       assert_equal 20, @category_listings.listings.size
     end
   end

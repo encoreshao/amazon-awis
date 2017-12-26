@@ -14,8 +14,8 @@ module Awis
     def setup_options!
       @debug        = Awis.config.debug || false
       @protocol     = Awis.config.protocol || 'https'
-      @timeout      = Awis.config.timeout || 5
-      @open_timeout = Awis.config.open_timeout || 2
+      @timeout      = Awis.config.timeout || 10
+      @open_timeout = Awis.config.open_timeout || 10
     end
 
     def params
@@ -30,8 +30,6 @@ module Awis
       setup_params(params)
 
       response = handle_response(request)
-      puts "Get response: #{response.inspect}"
-
       response.body.force_encoding(Encoding::UTF_8)
     end
   end

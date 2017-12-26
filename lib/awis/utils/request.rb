@@ -4,15 +4,16 @@ require "openssl"
 require "uri"
 require "net/https"
 require "time"
+require 'pry'
 
 module Awis
   module Utils
     module Request
-      def getSignatureKey(key, dateStamp, regionName, serviceName)
-        kDate    = OpenSSL::HMAC.digest(encryption_method, aws4 + key, dateStamp)
-        kRegion  = OpenSSL::HMAC.digest(encryption_method, kDate, regionName)
-        kService = OpenSSL::HMAC.digest(encryption_method, kRegion, serviceName)
-        kSigning = OpenSSL::HMAC.digest(encryption_method, kService, aws4_request)
+      def signature_key(key, date_stamp, region_name, service_name)
+        kDate    = openssl_hmac_digest(encryption_method, aws4 + key, date_stamp)
+        kRegion  = openssl_hmac_digest(encryption_method, kDate, region_name)
+        kService = openssl_hmac_digest(encryption_method, kRegion, service_name)
+        kSigning = openssl_hmac_digest(encryption_method, kService, aws4_request)
         kSigning
       end
 
@@ -49,7 +50,7 @@ module Awis
       end
 
       def payload_hash
-        Digest::SHA256.hexdigest ""
+        digest_sha256_hexdigest ""
       end
 
       def canonical_request
@@ -65,11 +66,11 @@ module Awis
       end
 
       def string_to_sign
-        algorithm + "\n" +  timestamp + "\n" +  credential_scope + "\n" + (Digest::SHA256.hexdigest canonical_request)
+        algorithm + "\n" +  timestamp + "\n" +  credential_scope + "\n" + digest_sha256_hexdigest(canonical_request)
       end
 
       def signing_key
-        getSignatureKey(Awis.config.secret_access_key, datestamp, Awis::SERVICE_REGION, Awis::SERVICE_NAME)
+        signature_key(Awis.config.secret_access_key, datestamp, Awis::SERVICE_REGION, Awis::SERVICE_NAME)
       end
 
       def signature
@@ -88,14 +89,16 @@ module Awis
       end
 
       def request
-        puts "Making request to: \n #{uri} \n\n"
-        req = Net::HTTP::Get.new(uri)
+        req = Net::HTTP::Get.new(uri.to_s)
         req["Accept"]         = "application/xml"
         req["Content-Type"]   = "application/xml"
         req["x-amz-date"]     = timestamp
         req["Authorization"]  = authorization_header
 
-        response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') { |http|
+        response = Net::HTTP.start(uri.host, uri.port,
+          use_ssl: uri.scheme == 'https',
+          ssl_timeout: @timeout,
+          open_timeout: @open_timeout) { |http|
           http.request(req)
         }
 
@@ -110,9 +113,8 @@ module Awis
           if response.body.nil?
             raise ResponseError.new(nil, response)
           else
-            xml = MultiXml.parse(response.body)
-            message = xml["Response"]["Errors"]["Error"]["Message"]
-            raise ResponseError.new(message, response)
+            error_message = MultiXml.parse(response.body).deep_find('ErrorCode')
+            raise ResponseError.new(error_message, response)
           end
         else
           raise ResponseError.new("Unknown code: #{respnse.code}", response)
@@ -137,6 +139,14 @@ module Awis
 
       def url_params
         '?' + query_str
+      end
+
+      def openssl_hmac_digest(method, key, secret)
+        OpenSSL::HMAC.digest(method, key, secret)
+      end
+
+      def digest_sha256_hexdigest(key)
+        Digest::SHA256.hexdigest key
       end
     end
   end

@@ -28,15 +28,15 @@ module Awis
     def parse_response_with_request(kclass, args)
       case kclass
       when 'UrlInfo'
-        Awis::Models::UrlInfo.new Awis::API::UrlInfo.new.fetch(args)
+        Models::UrlInfo.new API::UrlInfo.new.fetch(args)
       when 'SitesLinkingIn'
-        Awis::Models::SitesLinkingIn.new Awis::API::SitesLinkingIn.new.fetch(args)
+        Models::SitesLinkingIn.new API::SitesLinkingIn.new.fetch(args)
       when 'TrafficHistory'
-        Awis::Models::TrafficHistory.new Awis::API::TrafficHistory.new.fetch(args)
+        Models::TrafficHistory.new API::TrafficHistory.new.fetch(args)
       when 'CategoryBrowse'
-        Awis::Models::CategoryBrowse.new Awis::API::CategoryBrowse.new.fetch(args)
+        Models::CategoryBrowse.new API::CategoryBrowse.new.fetch(args)
       when 'CategoryListings'
-        Awis::Models::CategoryListings.new Awis::API::CategoryListings.new.fetch(args)
+        Models::CategoryListings.new API::CategoryListings.new.fetch(args)
       end
     end
   end

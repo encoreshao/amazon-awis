@@ -20,8 +20,8 @@ Awis.config do |c|
   c.secret_access_key = AWIS_CONFIG['secret_access_key']
   c.debug = AWIS_CONFIG['debug']
   c.protocol = 'https'    # Default 'https'
-  c.timeout = 5           # Default 5
-  c.open_timeout = 5      # Default 2
+  c.timeout = 10          # Default 10
+  c.open_timeout = 10     # Default 10
   c.logger = false        # Default nil
 end
 ```
@@ -30,7 +30,7 @@ end
 
 ``` ruby
 client = Awis::Client.new
-url_info = client.url_info(url: "ekohe.com")
+url_info = client.url_info(url: "site.com")
 ```
 
 If you looking for the API request URI:
@@ -116,7 +116,7 @@ You can specify options:
 
 ``` ruby
 client = Awis::Client.new
-category_listings = client.category_listings(path: "Top/Games/Card_Games")
+category_listings = client.category_listings(path: "Top/Arts")
 ```
 
 If you looking for the API request URI:
@@ -136,7 +136,7 @@ Returns object that contains relationships:
 
 ``` ruby
 client = Awis::Client.new
-category_browses = client.category_browse(path: "Top/Games/Card_Games")
+category_browses = client.category_browse(path: "Top/Arts")
 ```
 
 If you looking for the API request URI:
@@ -153,6 +153,10 @@ Returns object that contains methods:
 Returns object that contains relationships:
 
 * listings [:data_url, :title, :popularity_rank, :description]
+
+##### How to run test
+
+* rake test
 
 ##### Request ID and Status Code
 

@@ -1,14 +1,14 @@
 require "helper"
 
 describe Awis::API::CategoryBrowse do
-  describe "parsing xml" do
+  describe "parsing XML" do
     before do
       Awis.config do |c|
         c.access_key_id = 'key'
         c.secret_access_key = 'secret'
       end
 
-      stub_request(:get, %r{http://awis.amazonaws.com}).to_return(fixture("category_browse/card_games.txt"))
+      stub_request(:get, api_url).to_return(fixture("category_browse/card_games.txt"))
       @category_browse = Awis::Client.new.category_browse(:path => "Top/Games/Card_Games")
     end
 
@@ -24,19 +24,19 @@ describe Awis::API::CategoryBrowse do
       assert_equal true, @category_browse.success?
     end
 
-    it "Should be return categories" do
+    it "Should be return attribute categories" do
       assert_equal 8, @category_browse.categories.size
     end
 
-    it "Should be return language_categories" do
+    it "Should be return attribute language_categories" do
       assert_equal 20, @category_browse.language_categories.size
     end
 
-    it "Should be return related_categories" do
+    it "Should be return attribute related_categories" do
       assert_equal 8, @category_browse.related_categories.size
     end
 
-    it "Should be return letter_bars" do
+    it "Should be return attribute letter_bars" do
       assert_equal 36, @category_browse.letter_bars.size
     end
   end

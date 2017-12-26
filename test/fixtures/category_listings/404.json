@@ -1,0 +1,17 @@
+{
+  "CategoryListingsResponse" => {
+    "Response" => {
+      "OperationRequest" => { "RequestId" => "23e1fbc1-ea08-11e7-af14-29a3b111be14" },
+      "CategoryListingsResult" => {
+        "Alexa" => {
+          "Request" => {
+            "Errors" => {
+              "Error" => { "ErrorCode" => "Bad Request Invalid Path parameter value" }
+            }
+          }
+        }
+      },
+      "ResponseStatus" => { "StatusCode" => "ERROR" }
+    }
+  }
+}

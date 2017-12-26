@@ -8,7 +8,7 @@ describe Awis::API::TrafficHistory do
         c.secret_access_key = 'secret'
       end
 
-      stub_request(:get, %r{http://awis.amazonaws.com}).to_return(fixture("traffic_history/github.txt"))
+      stub_request(:get, api_url).to_return(fixture("traffic_history/github.txt"))
       @traffic_history = Awis::Client.new.traffic_history(:url => "github.com")
     end
 
@@ -24,19 +24,19 @@ describe Awis::API::TrafficHistory do
       assert_equal true, @traffic_history.success?
     end
 
-    it "Should be returns site" do
+    it "Should be return attribute site" do
       assert_equal "github.com", @traffic_history.site
     end
 
-    it "Should be returns range" do
+    it "Should be return attribute range" do
       assert_equal 26, @traffic_history.range
     end
 
-    it "Should be returns start" do
+    it "Should be return attribute start" do
       assert_equal "2017-02-06", @traffic_history.start
     end
 
-    it "Should be returns history datas" do
+    it "Should be return attribute history datas" do
       assert_equal 26, @traffic_history.historical_data.size
     end
   end
