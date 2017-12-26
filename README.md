@@ -30,7 +30,7 @@ end
 
 ``` ruby
 client = Awis::Client.new
-url_info = client.url_info(url: "site.com")
+url_info = client.url_info(url: "ekohe.com")
 ```
 
 If you looking for the API request URI:
