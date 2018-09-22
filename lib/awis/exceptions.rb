@@ -1,5 +1,5 @@
 module Awis
-  # Awis exceptions can be cought by rescuing: Awis::StandardError
+  # Awis exceptions can be caught by rescuing: Awis::StandardError
 
   class StandardError < StandardError; end
   class ArgumentError < StandardError; end
