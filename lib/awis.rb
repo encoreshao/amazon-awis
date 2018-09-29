@@ -1,5 +1,6 @@
 require "multi_xml"
 require "nokogiri"
+require "aws-sigv4"
 
 require "awis/version"
 require "awis/hash"
@@ -12,13 +13,8 @@ require "awis/api"
 require "awis/models"
 
 module Awis
-  SERVICE_HOST          = "awis.amazonaws.com".freeze
-  SERVICE_ENDPOINT      = "awis.us-west-1.amazonaws.com".freeze
-  SERVICE_PORT          = 443
-  SERVICE_URI           = "/api".freeze
-  SERVICE_REGION        = "us-west-1".freeze
+  SERVICE_PATH          = "api".freeze
   SERVICE_NAME          = "awis".freeze
-
-  class << self
-  end
+  SERVICE_REGION        = "us-west-1".freeze
+  SERVICE_HOST          = "#{SERVICE_NAME}.amazonaws.com"
 end
