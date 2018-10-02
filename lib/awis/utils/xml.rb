@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awis
   module Utils
     class XML
@@ -11,7 +13,7 @@ module Awis
 
         reader.each do |node|
           if node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
-            if attributes_in_path && node.attributes.size > 0
+            if attributes_in_path && !node.attributes.empty?
               attributes = []
 
               node.attributes.sort.each do |name, value|

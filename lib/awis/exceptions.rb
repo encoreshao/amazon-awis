@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awis
   # Awis exceptions can be caught by rescuing: Awis::StandardError
 

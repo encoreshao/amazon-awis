@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awis
   module Models
     class TrafficHistory < Base
@@ -8,13 +10,16 @@ module Awis
         setup_data! loading_response(response)
       end
 
+      # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/CyclomaticComplexity
+      # rubocop:disable Metrics/PerceivedComplexity
       def setup_data!(response)
         datas = []
 
         response.each_node do |node, path|
           text = node.inner_xml
-          text = text.to_i if text.to_i.to_s === text
-          text = nil if (text.class == String && text.empty?)
+          text = text.to_i if text.to_i.to_s == text
+          text = nil if text.class == String && text.empty?
 
           if node.name == 'aws:RequestId'
             @request_id ||= text
@@ -41,6 +46,9 @@ module Awis
 
         relationship_collections(@historical_data, datas, 5, HistoricalData)
       end
+      # rubocop:enable Metrics/AbcSize
+      # rubocop:enable Metrics/CyclomaticComplexity
+      # rubocop:enable Metrics/PerceivedComplexity
 
       def base_node_name
         "#{root_node_name}/aws:TrafficHistory/aws:HistoricalData/aws:Data"

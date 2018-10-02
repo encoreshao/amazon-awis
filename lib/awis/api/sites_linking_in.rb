@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Awis
   module API
     class SitesLinkingIn < Base
-      DEFAULT_RESPONSE_GROUP = %w(sites_linking_in).freeze
+      DEFAULT_RESPONSE_GROUP = %w[sites_linking_in].freeze
 
       def load_request_uri(arguments = {})
         validation_arguments!(arguments)
@@ -10,6 +12,7 @@ module Awis
       end
 
       private
+
       def validation_arguments!(arguments)
         before_validation_arguments(arguments)
 
@@ -20,16 +23,16 @@ module Awis
 
       def params
         {
-          "Action"        => action_name,
-          "Url"           => arguments[:url],
-          "ResponseGroup" => response_groups,
-          "Count"         => arguments[:count],
-          "Start"         => arguments[:start]
+          'Action'        => action_name,
+          'Url'           => arguments[:url],
+          'ResponseGroup' => response_groups,
+          'Count'         => arguments[:count],
+          'Start'         => arguments[:start]
         }
       end
 
       def response_groups
-        DEFAULT_RESPONSE_GROUP.map { |group| camelize(group) }.join(",")
+        DEFAULT_RESPONSE_GROUP.map { |group| camelize(group) }.join(',')
       end
     end
   end

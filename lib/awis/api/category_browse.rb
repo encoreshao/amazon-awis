@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Awis
   module API
     class CategoryBrowse < Base
-      DEFAULT_RESPONSE_GROUP = %w(categories related_categories language_categories letter_bars).freeze
+      DEFAULT_RESPONSE_GROUP = %w[categories related_categories language_categories letter_bars].freeze
 
       def load_request_uri(arguments = {})
         validation_arguments!(arguments)
@@ -10,9 +12,10 @@ module Awis
       end
 
       private
+
       def before_validation_arguments(arguments)
         raise ArgumentError, "Invalid arguments. should be like { path: 'Top/Arts' }" unless arguments.is_a?(Hash)
-        raise ArgumentError, "Invalid arguments. the path must be configured." unless arguments.has_key?(:path)
+        raise ArgumentError, 'Invalid arguments. the path must be configured.' unless arguments.key?(:path)
       end
 
       def validation_arguments!(arguments)
@@ -25,15 +28,15 @@ module Awis
 
       def params
         {
-          "Action"        => action_name,
-          "ResponseGroup" => response_groups,
-          "Path"          => arguments[:path],
-          "Descriptions"  => request_description_params
+          'Action'        => action_name,
+          'ResponseGroup' => response_groups,
+          'Path'          => arguments[:path],
+          'Descriptions'  => request_description_params
         }
       end
 
       def response_groups
-        arguments[:response_group].sort.map { |group| camelize(group) }.join(",")
+        arguments[:response_group].sort.map { |group| camelize(group) }.join(',')
       end
     end
   end

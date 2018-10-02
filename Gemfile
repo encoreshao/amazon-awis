@@ -1,6 +1,8 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "bundler"
-gem "rake"
+source 'https://rubygems.org'
+
+gem 'bundler'
+gem 'rake'
 
 gemspec

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awis
   module Models
     class CategoryBrowse < Base
@@ -12,6 +14,11 @@ module Awis
         setup_data! loading_response(response)
       end
 
+      # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/CyclomaticComplexity
+      # rubocop:disable Metrics/PerceivedComplexity
+      # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/BlockLength
       def setup_data!(response)
         categories = []
         language_categories = []
@@ -20,8 +27,8 @@ module Awis
 
         response.each_node do |node, path|
           text = node.inner_xml
-          text = text.to_i if text.to_i.to_s === text
-          text = nil if (text.class == String && text.empty?)
+          text = text.to_i if text.to_i.to_s == text
+          text = nil if text.class == String && text.empty?
 
           if node.name == 'aws:RequestId'
             @request_id ||= text
@@ -67,6 +74,11 @@ module Awis
         relationship_collections(@related_categories, related_categories, 4, RelatedCategory)
         relationship_collections(@letter_bars, letter_bars, 4, LetterBar)
       end
+      # rubocop:enable Metrics/AbcSize
+      # rubocop:enable Metrics/CyclomaticComplexity
+      # rubocop:enable Metrics/PerceivedComplexity
+      # rubocop:enable Metrics/MethodLength
+      # rubocop:enable Metrics/BlockLength
 
       def base_node_name
         "#{root_node_name}/aws:CategoryBrowse"

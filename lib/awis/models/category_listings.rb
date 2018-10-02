@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awis
   module Models
     class CategoryListings < Base
@@ -13,8 +15,8 @@ module Awis
 
         response.each_node do |node, path|
           text = node.inner_xml
-          text = text.to_i if text.to_i.to_s === text
-          text = nil if (text.class == String && text.empty?)
+          text = text.to_i if text.to_i.to_s == text
+          text = nil if text.class == String && text.empty?
 
           if node.name == 'aws:RequestId'
             @request_id ||= text

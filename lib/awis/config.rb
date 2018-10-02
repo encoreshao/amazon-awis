@@ -1,4 +1,6 @@
-require "singleton"
+# frozen_string_literal: true
+
+require 'singleton'
 
 module Awis
   class Config

@@ -1,30 +1,33 @@
+# frozen_string_literal: true
+
 module Awis
   class Client
     def initialize
-      raise CertificateError.new("Amazon access certificate is missing!") if Awis.config.access_key_id.nil? || Awis.config.secret_access_key.nil?
+      raise CertificateError, 'Amazon access certificate is missing!' if Awis.config.access_key_id.nil? || Awis.config.secret_access_key.nil?
     end
 
     def url_info(args)
-      parse_response_with_request("UrlInfo", args)
+      parse_response_with_request('UrlInfo', args)
     end
 
     def traffic_history(args)
-      parse_response_with_request("TrafficHistory", args)
+      parse_response_with_request('TrafficHistory', args)
     end
 
     def sites_linking_in(args)
-      parse_response_with_request("SitesLinkingIn", args)
+      parse_response_with_request('SitesLinkingIn', args)
     end
 
     def category_browse(args)
-      parse_response_with_request("CategoryBrowse", args)
+      parse_response_with_request('CategoryBrowse', args)
     end
 
     def category_listings(args)
-      parse_response_with_request("CategoryListings", args)
+      parse_response_with_request('CategoryListings', args)
     end
 
     private
+
     def parse_response_with_request(kclass, args)
       case kclass
       when 'UrlInfo'

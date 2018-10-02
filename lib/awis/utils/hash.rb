@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Hash
   def deep_find(key, object = self, found = nil)
     return object[key] if object.respond_to?(:key?) && object.key?(key)

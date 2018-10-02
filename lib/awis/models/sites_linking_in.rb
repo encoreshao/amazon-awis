@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awis
   module Models
     class SitesLinkingIn < Base
@@ -11,9 +13,9 @@ module Awis
       def setup_data!(response)
         sites = []
 
-        response.each_node do |node, path|
+        response.each_node do |node, _path|
           text = node.inner_xml
-          text = nil if (text.class == String && text.empty?)
+          text = nil if text.class == String && text.empty?
 
           if node.name == 'aws:RequestId'
             @request_id ||= text

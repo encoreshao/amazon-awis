@@ -8,6 +8,7 @@
 /spec/reports/
 /tmp/
 *.gem
+awis.yml
 
 .ruby-version
-awis.yml
+.DS_Store

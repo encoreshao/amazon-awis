@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awis
   module Models
     class UrlInfo < Base
@@ -24,8 +26,8 @@ module Awis
 
         response.each_node do |node, path|
           text = node.inner_xml
-          text = text.to_i if text.to_i.to_s === text && node.name != 'aws:Delta'
-          text = nil if (text.class == String && text.empty?)
+          text = text.to_i if text.to_i.to_s == text && node.name != 'aws:Delta'
+          text = nil if text.class == String && text.empty?
 
           if node.name == 'aws:RequestId'
             @request_id ||= text
@@ -75,7 +77,7 @@ module Awis
             related_related_links << { data_url: text }
           elsif node.name == 'aws:NavigableUrl' && path == "#{related_links_node_name}/aws:NavigableUrl"
             related_related_links << { navigable_url: text }
-          elsif node.name == 'aws:Title' &&  path == "#{related_links_node_name}/aws:Title"
+          elsif node.name == 'aws:Title' && path == "#{related_links_node_name}/aws:Title"
             related_related_links << { title: text }
           elsif node.name == 'aws:Title' && path == "#{categories_node_name}/aws:Title"
             category_data << { title: text }
@@ -166,11 +168,11 @@ module Awis
         owned_domains_relationship_collections(@owned_domains, owned_domain_objects, 2, OwnedDomain)
       end
 
-      def owned_domains_relationship_collections(_object, items, items_count, kclass)
+      def owned_domains_relationship_collections(item_object, items, items_count, kclass)
         return if items.empty?
 
         all_items = {}.array_slice_merge!(:item, items, items_count)
-        all_items.map { |item| _object << kclass.new(item) }
+        all_items.map { |item| item_object << kclass.new(item) }
       end
     end
 
@@ -188,7 +190,7 @@ module Awis
       end
 
       def phone_number_collections(phone_numbers)
-        return @phone_numbers = [] if phone_numbers.nil? || phone_numbers.empty?
+        return @phone_numbers = [] if phone_numbers.blank?
 
         phone_numbers.map { |item| @phone_numbers << PhoneNumber.new(item) }
       end
@@ -215,7 +217,7 @@ module Awis
                     :reach_page_views_per_user_value, :reach_page_views_per_user_delta
 
       def range_type
-        return 'month' unless time_range_months.blank?
+        return 'month' if time_range_months.present?
 
         'day'
       end

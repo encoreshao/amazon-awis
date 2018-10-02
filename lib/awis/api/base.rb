@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awis
   module API
     class Base
@@ -39,7 +41,7 @@ module Awis
 
       def before_validation_arguments(arguments)
         raise ArgumentError, "Invalid arguments. should be like { url: 'site.com' }" unless arguments.is_a?(Hash)
-        raise ArgumentError, "Invalid arguments. the url must be configured." unless arguments.has_key?(:url)
+        raise ArgumentError, 'Invalid arguments. the url must be configured.' unless arguments.key?(:url)
       end
 
       class << self

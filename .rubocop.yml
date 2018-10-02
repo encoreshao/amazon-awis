@@ -1,0 +1,87 @@
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.4
+  Exclude:
+    - '**/*.yml'
+    - 'test/**/*'
+    - 'pkg/*'
+    - 'tmp/*'
+
+Style/StringLiterals:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 160
+
+Metrics/ModuleLength:
+  Max: 500
+
+Metrics/BlockLength:
+  Exclude:
+    - 'test/**/*'
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Style/RedundantFreeze:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Style/NumericLiterals:
+  Exclude:
+    - 'spec/**/*'
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 30
+
+Layout/CaseIndentation:
+  # Valid values are: case, end
+  EnforcedStyle: end
+  IndentOneStep: false
+
+Metrics/AbcSize:
+  Max: 40
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Metrics/ParameterLists:
+  Max: 10
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Rails:
+  Enabled: true

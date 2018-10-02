@@ -1,7 +1,9 @@
-require "helper"
+# frozen_string_literal: true
+
+require 'helper'
 
 describe Awis::Client do
-  it "raises Argument Error when access_key_id not present" do
+  it 'raises Argument Error when access_key_id not present' do
     Awis.config do |c|
       c.access_key_id = nil
       c.secret_access_key = nil
@@ -12,7 +14,7 @@ describe Awis::Client do
     end
   end
 
-  it "raises Argument Error when secret_access_key not present" do
+  it 'raises Argument Error when secret_access_key not present' do
     assert_raises Awis::CertificateError, /certificate/ do
       Awis.config do |c|
         c.access_key_id = 'key'
@@ -23,7 +25,7 @@ describe Awis::Client do
     end
   end
 
-  it "get Awis config keys" do
+  it 'get Awis config keys' do
     Awis.config do |c|
       c.access_key_id = 'key'
       c.secret_access_key = 'secret'

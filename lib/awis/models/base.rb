@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Awis
   module Models
     class Base
@@ -15,11 +17,11 @@ module Awis
         self.class.name.split(/\:\:/)[-1]
       end
 
-      def relationship_collections(_object, items, items_count, kclass)
+      def relationship_collections(item_object, items, items_count, kclass)
         return if items.empty?
 
         all_items = {}.array_slice_merge!(:item, items, items_count)
-        all_items.map { |item| _object << kclass.new(item) }
+        all_items.map { |item| item_object << kclass.new(item) }
       end
 
       def success?
