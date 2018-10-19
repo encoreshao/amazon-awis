@@ -3,6 +3,9 @@
 require 'minitest/autorun'
 require 'webmock/minitest'
 require 'mocha/setup'
+require 'byebug'
+require 'pry'
+require 'pry-byebug'
 require 'awis'
 
 class MiniTest::Test
@@ -17,6 +20,6 @@ class MiniTest::Test
   end
 
   def api_url
-    %r{https://awis.amazonaws.com/api}
+    %r{#{Awis::SERVICE_HOST}}
   end
 end

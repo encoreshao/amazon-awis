@@ -190,7 +190,7 @@ module Awis
       end
 
       def phone_number_collections(phone_numbers)
-        return @phone_numbers = [] if phone_numbers.blank?
+        return @phone_numbers = [] if phone_numbers.nil? || phone_numbers.empty?
 
         phone_numbers.map { |item| @phone_numbers << PhoneNumber.new(item) }
       end
@@ -217,7 +217,7 @@ module Awis
                     :reach_page_views_per_user_value, :reach_page_views_per_user_delta
 
       def range_type
-        return 'month' if time_range_months.present?
+        return 'month' unless time_range_months.nil? || time_range_months.empty?
 
         'day'
       end
