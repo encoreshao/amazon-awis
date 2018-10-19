@@ -18,5 +18,5 @@ module Awis
   SERVICE_PATH          = 'api'
   SERVICE_NAME          = 'awis'
   SERVICE_REGION        = 'us-west-1'
-  SERVICE_HOST          = "#{SERVICE_NAME}.amazonaws.com"
+  SERVICE_HOST          = "#{SERVICE_NAME}.#{SERVICE_REGION}.amazonaws.com"
 end
