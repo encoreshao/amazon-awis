@@ -10,14 +10,14 @@ module Awis
     attr_reader :params, :secret_access_key, :access_key_id
 
     HEADERS = {
-      'Content-Type' => 'application/xml',
-      'Accept' => 'application/xml',
-      'User-Agent' => "awis-sdk-ruby v#{Awis::VERSION}"
+      'accept' => 'application/xml',
+      'content-type' => 'application/xml',
+      'user-agent' => "awis-sdk-ruby v#{Awis::VERSION}"
     }.freeze
 
     def initialize(options = {})
-      @secret_access_key = options.fetch(:secret_access_key, Awis.config.access_key_id)
-      @access_key_id     = options.fetch(:access_key_id, Awis.config.secret_access_key)
+      @secret_access_key = options.fetch(:secret_access_key, Awis.config.secret_access_key)
+      @access_key_id     = options.fetch(:access_key_id, Awis.config.access_key_id)
       raise CertificateError, 'Amazon access certificate is missing!' if @secret_access_key.nil? || @access_key_id.nil?
 
       setup_options!
@@ -77,7 +77,7 @@ module Awis
     end
 
     def uri
-      @uri ||= URI.parse("#{protocol}://#{Awis::SERVICE_HOST}/#{Awis::SERVICE_PATH}?" << query)
+      @uri ||= URI.parse("#{protocol}://#{Awis::SERVICE_HOST}/#{Awis::SERVICE_PATH}?#{query}")
     end
 
     def headers
