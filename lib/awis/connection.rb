@@ -32,7 +32,7 @@ module Awis
 
     def get(params = {})
       @params = params
-      handle_response(request).body.force_encoding(Encoding::UTF_8)
+      handle_response(request).body
     end
 
     private
