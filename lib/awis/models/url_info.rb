@@ -33,7 +33,7 @@ module Awis
 
         response.each_node do |node, path|
           text = node.inner_xml
-          text = text.nil? || text.empty? ? nil : text.to_i if text.nil? || text.empty? ? nil : text.to_i.to_s == text && node.name != 'aws:Delta'
+          text = text.to_i if text.to_i.to_s == text && node.name != 'aws:Delta'
           text = nil if text.class == String && text.empty?
 
           if node.name == 'aws:RequestId'
@@ -91,51 +91,51 @@ module Awis
           elsif node.name == 'aws:AbsolutePath' &&  path == "#{categories_node_name}/aws:AbsolutePath"
             category_data << { absolute_path: text }
           elsif node.name == 'aws:Months' && path == "#{statistic_node_name}/aws:TimeRange/aws:Months"
-            statistics << { time_range_months: text.nil? || text.empty? ? nil : text.to_i }
+            statistics << { time_range_months: text }
           elsif node.name == 'aws:Days' && path == "#{statistic_node_name}/aws:TimeRange/aws:Days"
-            statistics << { time_range_days: text.nil? || text.empty? ? nil : text.to_i }
+            statistics << { time_range_days: text }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:Rank/aws:Value"
-            statistics << { rank_value: text.nil? || text.empty? ? nil : text.to_i }
+            statistics << { rank_value: text }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:Rank/aws:Delta"
-            statistics << { rank_delta: text.nil? || text.empty? ? nil : text.to_f }
+            statistics << { rank_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:Reach/aws:Rank/aws:Value"
-            statistics << { reach_rank_value: text.nil? || text.empty? ? nil : text.to_i }
+            statistics << { reach_rank_value: text }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:Reach/aws:Rank/aws:Delta"
-            statistics << { reach_rank_delta: text.nil? || text.empty? ? nil : text.to_f }
+            statistics << { reach_rank_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:Reach/aws:PerMillion/aws:Value"
-            statistics << { reach_per_million_value: text.nil? || text.empty? ? nil : text.to_f }
+            statistics << { reach_per_million_value: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:Reach/aws:PerMillion/aws:Delta"
-            statistics << { reach_per_million_delta: text.nil? || text.empty? ? nil : text.to_f }
+            statistics << { reach_per_million_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:PageViews/aws:PerMillion/aws:Value"
-            statistics << { page_views_per_million_value: text.nil? || text.empty? ? nil : text.to_f }
+            statistics << { page_views_per_million_value: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:PageViews/aws:PerMillion/aws:Delta"
-            statistics << { page_views_per_million_delta: text.nil? || text.empty? ? nil : text.to_f }
+            statistics << { page_views_per_million_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:PageViews/aws:Rank/aws:Value"
-            statistics << { page_views_rank_value: text.nil? || text.empty? ? nil : text.to_i }
+            statistics << { page_views_rank_value: text }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:PageViews/aws:Rank/aws:Delta"
-            statistics << { page_views_rank_delta: text.nil? || text.empty? ? nil : text.to_f }
+            statistics << { page_views_rank_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:PageViews/aws:PerUser/aws:Value"
-            statistics << { page_views_per_user_value: text.nil? || text.empty? ? nil : text.to_f }
+            statistics << { page_views_per_user_value: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:PageViews/aws:PerUser/aws:Delta"
-            statistics << { page_views_per_user_delta: text.nil? || text.empty? ? nil : text.to_f }
+            statistics << { page_views_per_user_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Country' && path == rank_by_country_node_name
             rank_by_country << { country_code: node.attributes['Code'] }
           elsif node.name == 'aws:Rank' && path == "#{rank_by_country_node_name}/aws:Rank"
-            rank_by_country << { rank: text.nil? || text.empty? ? nil : text.to_i }
+            rank_by_country << { rank: text }
           elsif node.name == 'aws:PageViews' && path == "#{rank_by_country_node_name}/aws:Contribution/aws:PageViews"
-            rank_by_country << { contribution_page_views: text.nil? || text.empty? ? nil : text.to_f }
+            rank_by_country << { contribution_page_views: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Users' && path == "#{rank_by_country_node_name}/aws:Contribution/aws:Users"
-            rank_by_country << { contribution_users: text.nil? || text.empty? ? nil : text.to_f }
+            rank_by_country << { contribution_users: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:DataUrl' && path == "#{contributing_subdomains_node_name}/aws:DataUrl"
             contributing_subdomains << { data_url: text }
           elsif node.name == 'aws:Months' && path == "#{contributing_subdomains_node_name}/aws:TimeRange/aws:Months"
-            contributing_subdomains << { time_range_months: text.nil? || text.empty? ? nil : text.to_i }
+            contributing_subdomains << { time_range_months: text }
           elsif node.name == 'aws:Percentage' && path == "#{contributing_subdomains_node_name}/aws:Reach/aws:Percentage"
-            contributing_subdomains << { reach_percentage: text.nil? || text.empty? ? nil : text.to_f }
+            contributing_subdomains << { reach_percentage: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:Percentage' && path == "#{contributing_subdomains_node_name}/aws:PageViews/aws:Percentage"
-            contributing_subdomains << { page_views_percentage: text.nil? || text.empty? ? nil : text.to_f }
+            contributing_subdomains << { page_views_percentage: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           elsif node.name == 'aws:PerUser' && path == "#{contributing_subdomains_node_name}/aws:PageViews/aws:PerUser"
-            contributing_subdomains << { page_views_per_user: text.nil? || text.empty? ? nil : text.to_f }
+            contributing_subdomains << { page_views_per_user: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
           end
         end
 
