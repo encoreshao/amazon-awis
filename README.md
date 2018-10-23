@@ -43,6 +43,7 @@ Returns object that contains attributes:
 * data_url
 * rank
 * asin
+* xml
 
 Returns object that contains relationships:
 

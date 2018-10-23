@@ -3,9 +3,6 @@
 require 'minitest/autorun'
 require 'webmock/minitest'
 require 'mocha/setup'
-require 'byebug'
-require 'pry'
-require 'pry-byebug'
 require 'awis'
 
 class MiniTest::Test
