@@ -3,6 +3,8 @@
 module Awis
   module Utils
     class XML
+      attr_reader :data
+
       def initialize(data)
         @data = data
       end
