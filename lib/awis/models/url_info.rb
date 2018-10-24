@@ -30,112 +30,119 @@ module Awis
         rank_by_country = []
         contributing_subdomains = []
 
-
         response.each_node do |node, path|
           text = node.inner_xml
-          text = text.to_i if text.to_i.to_s == text && node.name != 'aws:Delta'
-          text = nil if text.class == String && text.empty?
+          candidate_text = text.gsub(/[,]/, '')
+          value = if integer_value?(candidate_text) && node.name != 'aws:Delta'
+                    candidate_text.to_i
+                  elsif float_value?(candidate_text)
+                    candidate_text.to_f
+                  elsif text.is_a?(String) && text.empty?
+                    nil
+                  else
+                    text
+                  end
 
           if node.name == 'aws:RequestId'
-            @request_id ||= text
+            @request_id ||= value
           elsif node.name == 'aws:StatusCode'
-            @status_code ||= text
+            @status_code ||= value
           elsif node.name == 'aws:DataUrl' && path == "#{traffic_node_name}/aws:DataUrl"
-            @data_url = text
+            @data_url = value
           elsif node.name == 'aws:Asin' && path == "#{traffic_node_name}/aws:Asin"
-            @asin = text
+            @asin = value
           elsif node.name == 'aws:Rank' && path == "#{traffic_node_name}/aws:Rank"
-            @rank = text
+            @rank = value
           elsif node.name == 'aws:DataUrl' && path == "#{content_node_name}/aws:DataUrl"
-            content_data[:data_url] = text
+            content_data[:data_url] = value
           elsif node.name == 'aws:Title' && path == "#{content_node_name}/aws:SiteData/aws:Title"
-            content_data[:site_title] = text
+            content_data[:site_title] = value
           elsif node.name == 'aws:Description'
-            content_data[:site_description] = text
+            content_data[:site_description] = value
           elsif node.name == 'aws:MedianLoadTime'
-            content_data[:speed_median_load_time] = text
+            content_data[:speed_median_load_time] = value
           elsif node.name == 'aws:Percentile'
-            content_data[:speed_percentile] = text
+            content_data[:speed_percentile] = value
           elsif node.name == 'aws:AdultContent'
-            content_data[:adult_content] = text
+            content_data[:adult_content] = value
           elsif node.name == 'aws:Locale'
-            content_data[:language_locale] = text
+            content_data[:language_locale] = value
           elsif node.name == 'aws:LinksInCount'
-            content_data[:links_in_count] = text
+            content_data[:links_in_count] = value
           elsif node.name == 'aws:Domain' && path == "#{content_node_name}/aws:OwnedDomains/aws:OwnedDomain/aws:Domain"
-            content_data[:owned_domains] << { domain: text }
+            content_data[:owned_domains] << { domain: value }
           elsif node.name == 'aws:Title' && path == "#{content_node_name}/aws:OwnedDomains/aws:OwnedDomain/aws:Title"
-            content_data[:owned_domains] << { title: text }
+            content_data[:owned_domains] << { title: value }
           elsif node.name == 'aws:OnlineSince'
-            content_data[:online_since] = text
+            content_data[:online_since] = value
           elsif node.name == 'aws:DataUrl' && path == "#{root_node_name}/aws:ContactInfo/aws:DataUrl"
-            contact_info[:data_url] = text
+            contact_info[:data_url] = value
           elsif node.name == 'aws:OwnerName'
-            contact_info[:owner_name] = text
+            contact_info[:owner_name] = value
           elsif node.name == 'aws:Email'
-            contact_info[:email] = text
+            contact_info[:email] = value
           elsif node.name == 'aws:PhysicalAddress'
-            contact_info[:physical_address] = text
+            contact_info[:physical_address] = value
           elsif node.name == 'aws:CompanyStockTicker'
-            contact_info[:company_stock_ticker] = text
+            contact_info[:company_stock_ticker] = value
           elsif node.name == 'aws:PhoneNumber'
-            contact_info[:phone_numbers] << text
+            contact_info[:phone_numbers] << value
           elsif node.name == 'aws:DataUrl' && path == "#{related_links_node_name}/aws:DataUrl"
-            related_related_links << { data_url: text }
+            related_related_links << { data_url: value }
           elsif node.name == 'aws:NavigableUrl' && path == "#{related_links_node_name}/aws:NavigableUrl"
-            related_related_links << { navigable_url: text }
+            related_related_links << { navigable_url: value }
           elsif node.name == 'aws:Title' && path == "#{related_links_node_name}/aws:Title"
-            related_related_links << { title: text }
+            related_related_links << { title: value }
           elsif node.name == 'aws:Title' && path == "#{categories_node_name}/aws:Title"
-            category_data << { title: text }
+            category_data << { title: value }
           elsif node.name == 'aws:AbsolutePath' &&  path == "#{categories_node_name}/aws:AbsolutePath"
-            category_data << { absolute_path: text }
+            category_data << { absolute_path: value }
           elsif node.name == 'aws:Months' && path == "#{statistic_node_name}/aws:TimeRange/aws:Months"
-            statistics << { time_range_months: text }
+            statistics << { time_range_months: value }
           elsif node.name == 'aws:Days' && path == "#{statistic_node_name}/aws:TimeRange/aws:Days"
-            statistics << { time_range_days: text }
+            statistics << { time_range_days: value }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:Rank/aws:Value"
-            statistics << { rank_value: text }
+            statistics << { rank_value: value }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:Rank/aws:Delta"
-            statistics << { rank_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            statistics << { rank_delta: value }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:Reach/aws:Rank/aws:Value"
-            statistics << { reach_rank_value: text }
+            statistics << { reach_rank_value: value }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:Reach/aws:Rank/aws:Delta"
-            statistics << { reach_rank_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            statistics << { reach_rank_delta: value }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:Reach/aws:PerMillion/aws:Value"
-            statistics << { reach_per_million_value: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            statistics << { reach_per_million_value: value }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:Reach/aws:PerMillion/aws:Delta"
-            statistics << { reach_per_million_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            statistics << { reach_per_million_delta: value }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:PageViews/aws:PerMillion/aws:Value"
-            statistics << { page_views_per_million_value: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            statistics << { page_views_per_million_value: value }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:PageViews/aws:PerMillion/aws:Delta"
-            statistics << { page_views_per_million_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            statistics << { page_views_per_million_delta: value }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:PageViews/aws:Rank/aws:Value"
-            statistics << { page_views_rank_value: text }
+            statistics << { page_views_rank_value: value }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:PageViews/aws:Rank/aws:Delta"
-            statistics << { page_views_rank_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            statistics << { page_views_rank_delta: value }
           elsif node.name == 'aws:Value' && path == "#{statistic_node_name}/aws:PageViews/aws:PerUser/aws:Value"
-            statistics << { page_views_per_user_value: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            statistics << { page_views_per_user_value: value }
           elsif node.name == 'aws:Delta' && path == "#{statistic_node_name}/aws:PageViews/aws:PerUser/aws:Delta"
-            statistics << { page_views_per_user_delta: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            statistics << { page_views_per_user_delta: value }
           elsif node.name == 'aws:Country' && path == rank_by_country_node_name
             rank_by_country << { country_code: node.attributes['Code'] }
           elsif node.name == 'aws:Rank' && path == "#{rank_by_country_node_name}/aws:Rank"
-            rank_by_country << { rank: text }
+            rank_by_country << { rank: value }
           elsif node.name == 'aws:PageViews' && path == "#{rank_by_country_node_name}/aws:Contribution/aws:PageViews"
-            rank_by_country << { contribution_page_views: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            rank_by_country << { contribution_page_views: value }
           elsif node.name == 'aws:Users' && path == "#{rank_by_country_node_name}/aws:Contribution/aws:Users"
-            rank_by_country << { contribution_users: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            rank_by_country << { contribution_users: value }
           elsif node.name == 'aws:DataUrl' && path == "#{contributing_subdomains_node_name}/aws:DataUrl"
-            contributing_subdomains << { data_url: text }
+            contributing_subdomains << { data_url: value }
           elsif node.name == 'aws:Months' && path == "#{contributing_subdomains_node_name}/aws:TimeRange/aws:Months"
-            contributing_subdomains << { time_range_months: text }
+            contributing_subdomains << { time_range_months: value }
           elsif node.name == 'aws:Percentage' && path == "#{contributing_subdomains_node_name}/aws:Reach/aws:Percentage"
-            contributing_subdomains << { reach_percentage: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            contributing_subdomains << { reach_percentage: value }
           elsif node.name == 'aws:Percentage' && path == "#{contributing_subdomains_node_name}/aws:PageViews/aws:Percentage"
-            contributing_subdomains << { page_views_percentage: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            contributing_subdomains << { page_views_percentage: value }
           elsif node.name == 'aws:PerUser' && path == "#{contributing_subdomains_node_name}/aws:PageViews/aws:PerUser"
-            contributing_subdomains << { page_views_per_user: text.nil? || (text.is_a?(String) && text.empty?) ? nil : text.to_f }
+            contributing_subdomains << { page_views_per_user: value }
           end
         end
 
@@ -289,6 +296,17 @@ module Awis
               30 => '50M - 100M',
                0 => '100M+'
         }
+      end
+
+
+      private
+
+      def integer_value?(text)
+        text.to_i.to_s == text
+      end
+
+      def float_value?(text)
+        !!Float(text.gsub(/[%]/, '')) rescue false
       end
     end
 
