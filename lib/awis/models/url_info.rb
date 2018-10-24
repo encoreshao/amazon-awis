@@ -32,7 +32,7 @@ module Awis
 
         response.each_node do |node, path|
           text = node.inner_xml
-          candidate_text = text.gsub(/[,]/, '')
+          candidate_text = text.gsub(/,/, '')
           value = if integer_value?(candidate_text) && node.name != 'aws:Delta'
                     candidate_text.to_i
                   elsif float_value?(candidate_text)
@@ -305,7 +305,7 @@ module Awis
       end
 
       def float_value?(text)
-        !!Float(text.gsub(/[%]/, '')) rescue false
+        !!Float(text.gsub(/%/, '')) rescue false
       end
     end
 
