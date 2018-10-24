@@ -298,7 +298,6 @@ module Awis
         }
       end
 
-
       private
 
       def integer_value?(text)
