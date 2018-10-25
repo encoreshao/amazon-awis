@@ -203,7 +203,7 @@ module Awis
       end
 
       def geos_sorted
-        rank_by_country.select{|rbc| !rbc.rank.nil? }.
+        rank_by_country.select{|rbc| !rbc.rank.nil? && !rbc.contribution_page_views.nil? }.
                         sort_by{|rbc| - rbc.contribution_page_views.round }.
                         map{|rbc| { rbc.country_code => rbc.contribution_page_views.round } }
       end
