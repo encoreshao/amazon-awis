@@ -32,7 +32,7 @@ module Awis
 
         response.each_node do |node, path|
           text = node.inner_xml
-          candidate_text = text.gsub(/,/, '')
+          candidate_text = text.delete(',')
           value = if integer_value?(candidate_text) && node.name != 'aws:Delta'
                     candidate_text.to_i
                   elsif float_value?(candidate_text)
@@ -203,9 +203,9 @@ module Awis
       end
 
       def geos_sorted
-        rank_by_country.select{|rbc| !rbc.rank.nil? && !rbc.contribution_page_views.nil? }.
-                        sort_by{|rbc| - rbc.contribution_page_views.round }.
-                        map{|rbc| { rbc.country_code => rbc.contribution_page_views.round } }
+        rank_by_country.select { |rbc| !rbc.rank.nil? && !rbc.contribution_page_views.nil? }.
+          sort_by { |rbc| - rbc.contribution_page_views.round }.
+          map { |rbc| { rbc.country_code => rbc.contribution_page_views.round } }
       end
 
       def geos_hash
@@ -217,7 +217,7 @@ module Awis
       end
 
       def contributing_hostnames
-        contributing_subdomains.map(&:data_url).reject{ |hostname| hostname == 'OTHER' }
+        contributing_subdomains.map(&:data_url).reject { |hostname| hostname == 'OTHER' }
       end
 
       def pvs_per_user
@@ -254,7 +254,7 @@ module Awis
             return rating if get_median_load_time > max_load_time
           end
         end
-        return 'AVERAGE ( < 5s)'
+        'AVERAGE ( < 5s)'
       end
 
       def alexa_speed_rating
@@ -277,7 +277,7 @@ module Awis
           350 => '10M - 20M',
           200 => '20M - 50M',
           100 => '50M - 100M',
-          28 => '100M+',
+          28 => '100M+'
         }
       end
 
@@ -285,16 +285,16 @@ module Awis
         {
           250000 => '< 1K',
           100000 => '1K - 10K',
-           50000 => '10K - 100K',
-           20000 => '100K - 500K',
-           10000 => '500K - 1M',
-            5000 => '1M - 2M',
-            2000 => '2M - 5M',
-            1000 => '5M - 10M',
-             500 => '10M - 20M',
-             150 => '20M - 50M',
-              30 => '50M - 100M',
-               0 => '100M+'
+          50000 => '10K - 100K',
+          20000 => '100K - 500K',
+          10000 => '500K - 1M',
+          5000 => '1M - 2M',
+          2000 => '2M - 5M',
+          1000 => '5M - 10M',
+          500 => '10M - 20M',
+          150 => '20M - 50M',
+          30 => '50M - 100M',
+          0 => '100M+'
         }
       end
 
@@ -305,7 +305,9 @@ module Awis
       end
 
       def float_value?(text)
-        !!Float(text.gsub(/%/, '')) rescue false
+        !!Float(text.delete('%'))
+      rescue StandardError
+        false
       end
     end
 
