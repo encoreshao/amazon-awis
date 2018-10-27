@@ -28,7 +28,7 @@ module Awis
 
         @arguments = arguments
         @arguments[:range] = arguments.fetch(:range, 31)
-        @arguments[:start] = arguments.fetch(:start) { Time.zone.now - (3600 * 24 * @arguments[:range].to_i) }
+        @arguments[:start] = arguments.fetch(:start) { Time.now - (3600 * 24 * @arguments[:range].to_i) }
       end
 
       def start_date

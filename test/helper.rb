@@ -17,6 +17,6 @@ class MiniTest::Test
   end
 
   def api_url
-    %r{https://awis.amazonaws.com/api}
+    %r{#{Awis::SERVICE_HOST}}
   end
 end
