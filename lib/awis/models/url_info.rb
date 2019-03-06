@@ -306,7 +306,7 @@ module Awis
 
       def float_value?(text)
         !!Float(text.delete('%'))
-      rescue StandardError
+      rescue ::StandardError
         false
       end
     end
