@@ -157,7 +157,7 @@ Returns object that contains relationships:
 
 ##### How to run test
 
-* rake test
+* bundle exec rake test
 
 ##### Request ID and Status Code
 
