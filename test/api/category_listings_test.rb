@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'helper'
+require_relative './../helper'
 
 describe Awis::API::CategoryListings do
   describe 'Parsing XML' do

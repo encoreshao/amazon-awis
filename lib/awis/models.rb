@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+require_relative './models/base'
+require_relative './models/base_entity'
+require_relative './models/url_info'
+require_relative './models/traffic_history'
+require_relative './models/sites_linking_in'
+require_relative './models/category_listings'
+require_relative './models/category_browse'
+
 module Awis
   module Models
     autoload :Base,             'awis/models/base'

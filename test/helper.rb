@@ -3,7 +3,7 @@
 require 'minitest/autorun'
 require 'webmock/minitest'
 require 'mocha/setup'
-require 'awis'
+require_relative './../lib/awis'
 
 class MiniTest::Test
   def setup

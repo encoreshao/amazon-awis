@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'helper'
+require_relative './../helper'
 
 describe Awis::API::UrlInfo do
   before do
@@ -105,6 +105,10 @@ describe Awis::API::UrlInfo do
 
     it 'Should be return attribute usage statistics' do
       assert_equal 4, @url_info.usage_statistics.size
+    end
+
+    it 'Should be return `month` as first range type' do
+      assert_equal 'month', @url_info.usage_statistics.first.range_type
     end
   end
 

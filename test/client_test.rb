@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'helper'
+require_relative './helper'
 
 describe Awis::Client do
   it 'raises Argument Error when access_key_id not present' do

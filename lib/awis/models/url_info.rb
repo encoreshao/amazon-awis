@@ -371,7 +371,7 @@ module Awis
                     :page_views_per_user_value, :page_views_per_user_delta
 
       def range_type
-        return 'month' unless time_range_months.nil? || time_range_months.empty?
+        return 'month' unless time_range_months.nil?
 
         'day'
       end
