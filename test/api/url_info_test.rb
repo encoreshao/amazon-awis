@@ -107,8 +107,23 @@ describe Awis::API::UrlInfo do
       assert_equal 4, @url_info.usage_statistics.size
     end
 
-    it 'Should be return `month` as first range type' do
-      assert_equal 'month', @url_info.usage_statistics.first.range_type
+    it 'Should be return first usage statistic' do
+      usage_statistic = @url_info.usage_statistics.first
+
+      assert_equal 'month', usage_statistic.range_type
+      assert_equal 3, usage_statistic.range_count
+      assert_equal 3, usage_statistic.time_range_months
+      assert_equal nil, usage_statistic.time_range_days
+      assert_equal 69, usage_statistic.rank_value
+      assert_equal 8.0, usage_statistic.rank_delta
+      assert_equal 81, usage_statistic.reach_rank_value
+      assert_equal 18.0, usage_statistic.reach_rank_delta
+      assert_equal 9333, usage_statistic.reach_per_million_value
+      assert_equal -29.59, usage_statistic.reach_per_million_delta
+      assert_equal 66, usage_statistic.page_views_rank_value
+      assert_equal 9.0, usage_statistic.page_views_rank_delta
+      assert_equal 5.64, usage_statistic.page_views_per_user_value
+      assert_equal -9.032, usage_statistic.page_views_per_user_delta
     end
   end
 
