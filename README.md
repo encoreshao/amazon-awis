@@ -1,60 +1,108 @@
 ## Amazon - Alexa Web Information Service (AWIS)
-Ruby Library for AWIS REST API - See: [Alexa Docs](http://docs.amazonwebservices.com/AlexaWebInfoService/latest/)
+Ruby Library for AWIS REST API - see: [Alexa Docs](http://docs.amazonwebservices.com/AlexaWebInfoService/latest/)
 
 ### How to installation
 
-```
+```ruby
 gem install awis-sdk-ruby
 ```
+
+### Support to Ruby2.x
+
+- The latest update requires Ruby 2.0 or higher
 
 ### How to usage
 
 ##### Configure your amazon certificate
 
-```
+```ruby
 require 'awis'
 
 AWIS_CONFIG = YAML.load(File.read('awis.yml'))
 Awis.config do |c|
-  c.access_key_id = AWIS_CONFIG['access_key_id']
-  c.secret_access_key = AWIS_CONFIG['secret_access_key']
-  c.debug = AWIS_CONFIG['debug']
-  c.protocol = 'https'    # Default 'https'
-  c.timeout = 10          # Default 10
-  c.open_timeout = 10     # Default 10
-  c.logger = false        # Default nil
+  c.access_key_id       = AWIS_CONFIG['access_key_id']
+  c.secret_access_key   = AWIS_CONFIG['secret_access_key']
+  c.debug               = AWIS_CONFIG['debug']
+  c.protocol            = 'https' # Default 'https'
+  c.timeout             = 10 # Default 10
+  c.open_timeout        = 10 # Default 10
+  c.logger              = false # Default nil
 end
 ```
 
-##### Get UrlInfo Information
+##### Get Url Info
 
-``` ruby
+```ruby
 client = Awis::Client.new
 url_info = client.url_info(url: "site.com")
 ```
 
 If you looking for the API request URI:
 
-* Awis::API::UrlInfo.new.load_request_uri(url: 'site.com')
+```ruby
+Awis::API::UrlInfo.new.load_request_uri(url: 'site.com')
+```
 
-
-Returns object that contains attributes:
+returns object that contains attributes:
 
 * data_url
 * rank
 * asin
 * xml
 
-Returns object that contains relationships:
+returns object that contains relationships:
 
-* contact_info [:data_url, :owner_name, :email, :physical_address, :company_stock_ticker, :phone_numbers]
-* content_data [:data_url, :site_title, :site_description, :speed_median_load_time, :speed_percentile, :adult_content, :language_locale, :links_in_count, :owned_domains]
-* usage_statistics [:time_range_months, :time_range_days, :rank_value, :rank_delta, :reach_rank_value, :reach_rank_delta,
-                    :reach_per_million_value, :reach_per_million_delta, :reach_page_views_per_million_value, :reach_page_views_per_million_delta,
-                    :reach_page_views_rank_value, :reach_page_views_rank_delta, :reach_page_views_per_user_value, :reach_page_views_per_user_delta]
-    - add two methods: [range_type, range_count]
-* related_links [:data_url, :navigable_url, :title]
-* categories [:title, :absolute_path]
+**contact_info**
+- attrubutes
+  - data_url
+  - owner_name
+  - email
+  - physical_address
+  - company_stock_ticker
+  - phone_numbers
+
+**content_data**
+- attrubutes
+  - data_url
+  - site_title
+  - site_description
+  - speed_median_load_time
+  - speed_percentile
+  - adult_content
+  - language_locale
+  - links_in_count
+  - owned_domains
+
+**usage_statistics**
+- attrubutes
+  - time_range_months
+  - time_range_days
+  - rank_value
+  - rank_delta
+  - reach_rank_value
+  - reach_rank_delta,
+  - reach_per_million_value
+  - reach_per_million_delta
+  - page_views_per_million_value
+  - page_views_per_million_delta,
+  - page_views_rank_value
+  - page_views_rank_delta
+  - page_views_per_user_value
+  - page_views_per_user_delta
+- Methods: 
+  - range_type
+  - range_count
+
+**related_links** 
+- attrubutes
+  - data_url
+  - navigable_url
+  - title
+
+**categories** 
+- attrubutes
+  - title
+  - absolute_path
 
 New methods:
 
@@ -67,14 +115,16 @@ You can specify options:
 
 ##### Get Sites Linking In
 
-``` ruby
+```ruby
 client = Awis::Client.new
 sites_linking_in = client.sites_linking_in(url: "site.com")
 ```
 
 If you looking for the API request URI:
 
-* Awis::API::SitesLinkingIn.new.load_request_uri(url: 'site.com')
+```ruby
+Awis::API::SitesLinkingIn.new.load_request_uri(url: 'site.com')
+```
 
 Returns object that contains relationships:
 
@@ -88,14 +138,16 @@ You can specify options:
 
 ##### Get Traffic History
 
-``` ruby
+```ruby
 client = Awis::Client.new
 traffic_history = client.traffic_history(url: "site.com")
 ```
 
 If you looking for the API request URI:
 
-* Awis::API::TrafficHistory.new.load_request_uri(url: 'site.com')
+```ruby
+Awis::API::TrafficHistory.new.load_request_uri(url: 'site.com')
+```
 
 Returns object that contains methods:
 
@@ -115,14 +167,16 @@ You can specify options:
 
 ##### Get Category Listings
 
-``` ruby
+```ruby
 client = Awis::Client.new
 category_listings = client.category_listings(path: "Top/Arts")
 ```
 
 If you looking for the API request URI:
 
-* Awis::API::CategoryListings.new.load_request_uri(path: "Top/Games/Card_Games")
+```ruby
+Awis::API::CategoryListings.new.load_request_uri(path: "Top/Games/Card_Games")
+```
 
 Returns object that contains methods:
 
@@ -135,14 +189,16 @@ Returns object that contains relationships:
 
 ##### Get Category Browse
 
-``` ruby
+```ruby
 client = Awis::Client.new
 category_browses = client.category_browse(path: "Top/Arts")
 ```
 
 If you looking for the API request URI:
 
-* Awis::API::CategoryBrowse.new.load_request_uri(path: "Top/Games/Card_Games")
+```ruby
+Awis::API::CategoryBrowse.new.load_request_uri(path: "Top/Games/Card_Games")
+```
 
 Returns object that contains methods:
 
