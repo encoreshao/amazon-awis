@@ -7,7 +7,7 @@ Ruby Library for AWIS REST API - see: [Alexa Docs](http://docs.amazonwebservices
 gem install awis-sdk-ruby
 ```
 
-### Support to Ruby2.x
+### Support Ruby 2.x 
 
 - The latest update requires Ruby 2.0 or higher
 
