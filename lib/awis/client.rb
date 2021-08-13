@@ -29,18 +29,13 @@ module Awis
     private
 
     def parse_response_with_request(kclass, args)
-      case kclass
-      when 'UrlInfo'
-        Models::UrlInfo.new API::UrlInfo.new.fetch(args)
-      when 'SitesLinkingIn'
-        Models::SitesLinkingIn.new API::SitesLinkingIn.new.fetch(args)
-      when 'TrafficHistory'
-        Models::TrafficHistory.new API::TrafficHistory.new.fetch(args)
-      when 'CategoryBrowse'
-        Models::CategoryBrowse.new API::CategoryBrowse.new.fetch(args)
-      when 'CategoryListings'
-        Models::CategoryListings.new API::CategoryListings.new.fetch(args)
-      end
+      raise ArgumentError, 'Amazon class was missing!'  unless [
+        'UrlInfo', 'SitesLinkingIn', 'TrafficHistory',
+        'CategoryBrowse', 'CategoryListings'
+      ].include?(kclass)
+
+      response = Kernel.const_get("Awis::API::#{kclass}").new.fetch(args)
+      Kernel.const_get("Awis::Models::#{kclass}").new(response)
     end
   end
 end

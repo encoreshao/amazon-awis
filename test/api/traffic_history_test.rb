@@ -3,7 +3,7 @@
 require_relative './../helper'
 
 describe Awis::API::TrafficHistory do
-  describe 'parsing xml' do
+  describe 'Parsing xml' do
     before do
       Awis.config do |c|
         c.access_key_id = 'key'

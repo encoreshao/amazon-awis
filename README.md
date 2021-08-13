@@ -50,6 +50,14 @@ returns object that contains attributes:
 * asin
 * xml
 
+New methods:
+
+* is_404?
+* not_found?
+* pretty_xml
+
+`pretty_xml` method will easily to review the XML response from the terminal
+
 returns object that contains relationships:
 
 **contact_info**
@@ -103,10 +111,6 @@ returns object that contains relationships:
 - attrubutes
   - title
   - absolute_path
-
-New methods:
-
-* is_404?
 
 You can specify options:
 

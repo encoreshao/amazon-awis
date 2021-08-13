@@ -3,7 +3,7 @@
 require_relative './../helper'
 
 describe Awis::API::SitesLinkingIn do
-  describe 'parsing XML' do
+  describe 'Parsing XML' do
     before do
       Awis.config do |c|
         c.access_key_id = 'key'

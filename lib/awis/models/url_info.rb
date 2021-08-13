@@ -4,7 +4,7 @@ module Awis
   module Models
     class UrlInfo < Base
       attr_accessor :data_url, :rank, :asin, :contact_info, :content_data, :usage_statistics, :related_links,
-                    :categories, :xml, :contributing_subdomains, :rank_by_country
+                    :categories, :contributing_subdomains, :rank_by_country
 
       def initialize(response)
         @usage_statistics = []
@@ -13,11 +13,10 @@ module Awis
         @contributing_subdomains = []
         @rank_by_country = []
 
-        setup_data! loading_response(response)
+        super(response)
       end
 
       def setup_data!(response)
-        @xml = response
         content_data = {
           owned_domains: []
         }
@@ -156,10 +155,6 @@ module Awis
         relationship_collections(@contributing_subdomains, contributing_subdomains, 5, ContributingSubdomain)
       end
 
-      def is_404?
-        success? && rank == 404
-      end
-
       def init_entity_data(attr_name, data, kclass)
         return if data.empty?
 
@@ -212,6 +207,11 @@ module Awis
         @geos_hash ||= geos_sorted.reduce({}, :merge)
       end
 
+      def not_found?
+        ([content_data.data_url, content_data.site_title] & [404, '404']).size > 0
+      end
+      alias :is_404? :not_found?
+
       def domains
         content_data.owned_domains.map(&:domain)
       end
@@ -241,10 +241,10 @@ module Awis
       end
 
       def daily_GDN_page_views
-        if rank
-          alexa_gdn.each do |max_pvs, gdn_range|
-            return gdn_range if rank > max_pvs
-          end
+        return unless rank
+
+        alexa_gdn.each do |max_pvs, gdn_range|
+          return gdn_range if rank > max_pvs
         end
       end
 
@@ -254,6 +254,7 @@ module Awis
             return rating if get_median_load_time > max_load_time
           end
         end
+
         'AVERAGE ( < 5s)'
       end
 
@@ -312,7 +313,8 @@ module Awis
     end
 
     class ContentData < BaseEntity
-      attr_accessor :data_url, :site_title, :site_description, :online_since, :speed_median_load_time, :speed_percentile, :adult_content,
+      attr_accessor :data_url, :site_title, :site_description, :online_since,
+                    :speed_median_load_time, :speed_percentile, :adult_content,
                     :language_locale, :links_in_count, :owned_domains
 
       def initialize(options)

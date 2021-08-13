@@ -31,13 +31,20 @@ module Awis
     end
 
     def get(params = {})
-      @params = params
+      set_params(params)
+
       handle_response(request).body
+    end
+
+    def set_params(params)
+      @params = params
     end
 
     private
 
     def handle_response(response)
+      puts ['URI ', response.uri].join if debug
+
       case response
       when Net::HTTPSuccess
         response

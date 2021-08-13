@@ -7,7 +7,8 @@ module Awis
 
       def initialize(response)
         @sites = []
-        setup_data! loading_response(response)
+
+        super(response)
       end
 
       def setup_data!(response)

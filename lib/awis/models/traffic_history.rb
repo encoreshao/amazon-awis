@@ -7,7 +7,8 @@ module Awis
 
       def initialize(response)
         @historical_data = []
-        setup_data! loading_response(response)
+
+        super(response)
       end
 
       # rubocop:disable Metrics/AbcSize

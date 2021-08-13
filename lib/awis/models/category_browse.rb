@@ -11,7 +11,7 @@ module Awis
         @related_categories = []
         @letter_bars = []
 
-        setup_data! loading_response(response)
+        super(response)
       end
 
       # rubocop:disable Metrics/AbcSize
